@@ -14,10 +14,18 @@ const editMedicalService= async (req,res)=>{
     medicalService.description = req.body.description;
     try{
         medicalService.save();
+        res.status(200).json({
+            "status":200,
+            "mgs":'Seccessfully updated'
+        })
         return
     }
     catch(error){
         console.log(error);
+        res.status(500).json({
+            "status":500,
+            "mgs":'Server problem'
+        })
         return
     }
 }
