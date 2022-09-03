@@ -7,7 +7,7 @@ const doctorList = new mongoose.Schema({
     },
     image:{
         type:String,
-        required:true,
+        required:false,
     },
     specialished_on:{
         type:String,
@@ -15,10 +15,6 @@ const doctorList = new mongoose.Schema({
     },
     description:{
         type:String,
-        required:true,
-    },
-    number_of_doctor:{
-        type:Number,
         required:true,
     },
 })

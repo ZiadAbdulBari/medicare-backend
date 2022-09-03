@@ -18,5 +18,14 @@ const coreServiceValidation = (value)=>{
     })
     return schema.validate(value);
 }
+const doctorListValidation = (value)=>{
+    const schema = Joi.object({
+        doctor_name: Joi.string().min(3),
+        specialished_on: Joi.string().min(5),
+        description: Joi.string().min(10),
+    })
+    return schema.validate(value);
+}
 module.exports = medicalServiceValidation;
 module.exports = coreServiceValidation;
+module.exports = doctorListValidation;
