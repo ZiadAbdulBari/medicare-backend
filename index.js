@@ -3,13 +3,15 @@ const app = express();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 require('dotenv').config();
-const router = require('./routers/home.router');
+const adminRouter = require('./routers/home.router');
+const userRouter = require('./routers/user.router');
 
 //body parse
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
-app.use('/admin/',router);
+app.use('/admin/',adminRouter);
+app.use('/user/',userRouter);
 
 //database connection
 mongoose.connect(process.env.DB_URL)
