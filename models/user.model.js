@@ -30,6 +30,10 @@ const user = new mongoose.Schema({
         required: false
     },
     speacialist_on:{
+        type: String,
+        required: false
+    },
+    degree:{
         type: Array,
         required: false
     },
