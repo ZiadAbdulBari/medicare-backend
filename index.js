@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 require('dotenv').config();
 const adminRouter = require('./routers/home.router');
 const userRouter = require('./routers/user.router');
+const appointmentRouter = require('./routers/appointment.router');
 
 //body parse
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -12,6 +13,8 @@ app.use(bodyParser.json())
 
 app.use('/admin/',adminRouter);
 app.use('/user/',userRouter);
+
+app.use('/doctor/',appointmentRouter);
 
 //database connection
 mongoose.connect(process.env.DB_URL)
