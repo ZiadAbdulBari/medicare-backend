@@ -26,7 +26,7 @@ const user = new mongoose.Schema({
         trype:String,
         required:false,
     },
-    work_at: {
+    work_at:{
         type: String,
         required: false
     },

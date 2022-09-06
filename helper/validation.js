@@ -26,6 +26,20 @@ const doctorListValidation = (value)=>{
     })
     return schema.validate(value);
 }
+const createAppointmentValidation = (value)=>{
+    const schema = Joi.object({
+        user_name: Joi.string().min(3),
+        doctor_name: Joi.string().min(5),
+        doctor_id: Joi.string().required(),
+        patient_name: Joi.string().min(3),
+        contact: Joi.string().min(11),
+        age: Joi.number(),
+        disease:Joi.string().min(3),
+        chosen_date:Joi.string().required(),
+    })
+    return schema.validate(value);
+}
 module.exports = medicalServiceValidation;
 module.exports = coreServiceValidation;
 module.exports = doctorListValidation;
+module.exports.createAppointmentValidation = createAppointmentValidation;
