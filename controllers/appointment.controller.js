@@ -84,5 +84,22 @@ const createdAppointment = async(req, res)=>{
         })
     }
 }
+
+const getAppointmentList = async(req,res)=>{
+    if(req.method=='get'){
+        const list = await Appointment.find({doctor_id: req.params.id});
+        console.log(list)
+        return res.status(200).json({
+            "data":list,
+        })
+    }
+    else{
+        return res.status(405).json({
+            "status":405,
+            "mgs":"method not allowed"
+        })
+    }
+}
 module.exports.checkAvailability = checkAvailability;
 module.exports.createdAppointment = createdAppointment;
+module.exports.getAppointmentList = getAppointmentList;
