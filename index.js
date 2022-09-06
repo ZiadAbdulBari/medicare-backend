@@ -6,14 +6,17 @@ require('dotenv').config();
 const adminRouter = require('./routers/home.router');
 const userRouter = require('./routers/user.router');
 const appointmentRouter = require('./routers/appointment.router');
+const adminPannel = require('./controllers/admin.comtroller');
+
 
 //body parse
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
-
-app.use('/admin/',adminRouter);
+app.set('view engine', 'ejs');
+app.use('/public', express.static('public'));
+app.use('/admin',adminPannel);
+app.use('/home/',adminRouter);
 app.use('/user/',userRouter);
-
 app.use('/doctor/',appointmentRouter);
 
 //database connection
