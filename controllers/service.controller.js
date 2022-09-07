@@ -5,7 +5,7 @@ const createCoreService = async (req,res)=>{
     const {error} = coreServiceValidation(req.body);
     if(error){
         console.log(error);
-        return res.redirect('/');
+        return res.redirect('/admin/core-service');
     }
     const service = new CoreService({
         service_name: req.body.service_name,
@@ -20,7 +20,7 @@ const createCoreService = async (req,res)=>{
             "status":201,
             "mgs":"Successfully created",
         })
-        return res.redirect('/');
+        return res.redirect('/admin/core-service');
     }
     catch(error){
         console.log(error);
@@ -28,7 +28,7 @@ const createCoreService = async (req,res)=>{
             "status":500,
             "mgs":"server error",
         })
-        return res.redirect('/');
+        return res.redirect('/admin/core-service');
     }
 }
 const updateCoreService = async (req,res)=>{

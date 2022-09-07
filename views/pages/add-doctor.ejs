@@ -3,146 +3,226 @@
     <div class="col-12 grid-margin">
         <div class="card">
           <div class="card-body">
-            <h4 class="card-title">Horizontal Two column</h4>
-            <form class="form-sample">
-              <p class="card-description">
-                Personal info
-              </p>
+            <h4 class="card-title">Add Doctor</h4>
+            <form class="form-sample" action="/user/add-doctor/doctor" method="POST">
               <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-6 cl-sm-12">
                   <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">First Name</label>
+                    <label class="col-sm-3 col-form-label">Name</label>
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" />
+                      <input type="text" name="name" class="form-control" placeholder="Full Name" />
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Email</label>
+                    <div class="col-sm-9">
+                      <input type="email" name="email" class="form-control" placeholder="email@email.com" />
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Contact</label>
+                    <div class="col-sm-9">
+                      <input type="text" name="contact" class="form-control" placeholder="01XXXXXXXXX" />
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">NID Number</label>
+                    <div class="col-sm-9">
+                      <input type="text" name="NID" class="form-control" placeholder="NID" />
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Work At</label>
+                    <div class="col-sm-9">
+                      <input type="text" name="work_at" class="form-control" placeholder="ABC Medical college and Hospital" />
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Specialist On</label>
+                    <div class="col-sm-9">
+                      <input type="text" name="speacialist_on" class="form-control" placeholder="Medicine Specialist" />
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Degree</label>
+                    <div class="col-sm-9">
+                      <input type="text" name="degree" class="form-control" placeholder="MBBS, FCPS, FRCS" />
                     </div>
                   </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 col-sm-12">
+                  <label class="col-sm-2 col-form-label">Schedule</label>
                   <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Last Name</label>
-                    <div class="col-sm-9">
-                      <input type="text" class="form-control" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Gender</label>
-                    <div class="col-sm-9">
-                      <select class="form-control">
-                        <option>Male</option>
-                        <option>Female</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Date of Birth</label>
-                    <div class="col-sm-9">
-                      <input class="form-control" placeholder="dd/mm/yyyy"/>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Category</label>
-                    <div class="col-sm-9">
-                      <select class="form-control">
-                        <option>Category1</option>
-                        <option>Category2</option>
-                        <option>Category3</option>
-                        <option>Category4</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Membership</label>
-                    <div class="col-sm-4">
-                      <div class="form-check">
-                        <label class="form-check-label">
-                          <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios1" value="" checked>
-                          Free
-                        </label>
-                      </div>
-                    </div>
-                    <div class="col-sm-5">
-                      <div class="form-check">
-                        <label class="form-check-label">
-                          <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios2" value="option2">
-                          Professional
-                        </label>
+                    <div class="col-md-12">
+                      <div class="row">
+                        <div class="col-md-3">
+                          <div class="form-check form-check-primary">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" value="sunday">
+                              Sunday
+                            <i class="input-helper"></i>
+                          </label>
+                          </div>
+                        </div>
+                        <div class="col-md-3">
+                          <input type="text" name="sunday_time" class="form-control" placeholder="4:00pm - 9:00pm"/>
+                        </div>
+                        <div class="col-md-4">
+                          <input type="text" name="sunday_hospital" class="form-control" placeholder="Hospital"/>
+                        </div>
+                        <div class="col-md-2">
+                          <input type="number" name="sunday_patient" class="form-control" placeholder="Number"/>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
-              <p class="card-description">
-                Address
-              </p>
-              <div class="row">
-                <div class="col-md-6">
                   <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Address 1</label>
-                    <div class="col-sm-9">
-                      <input type="text" class="form-control" />
+                    <div class="col-md-12">
+                      <div class="row">
+                        <div class="col-sm-3">
+                          <div class="form-check form-check-primary">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" value="monday">
+                              Monday
+                            <i class="input-helper"></i>
+                          </label>
+                          </div>
+                        </div>
+                        <div class="col-sm-3">
+                          <input type="text" name="monday_time" class="form-control" placeholder="4:00pm - 9:00pm"/>
+                        </div>
+                        <div class="col-sm-4">
+                          <input type="text" name="monday_hospital" class="form-control" placeholder="Hospital"/>
+                        </div>
+                        <div class="col-sm-2">
+                          <input type="text" name="monday_patient" class="form-control" placeholder="Number"/>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-md-12">
+                      <div class="row">
+                        <div class="col-sm-3">
+                          <div class="form-check form-check-primary">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" value="tuesday">
+                              Tuesday
+                            <i class="input-helper"></i>
+                          </label>
+                          </div>
+                        </div>
+                        <div class="col-sm-3">
+                          <input type="text" name="tuesday_time" class="form-control" placeholder="4:00pm - 9:00pm"/>
+                        </div>
+                        <div class="col-sm-4">
+                          <input type="text" name="tuesday_hospital" class="form-control" placeholder="Hospital"/>
+                        </div>
+                        <div class="col-sm-2">
+                          <input type="text" name="tuesday_patient" class="form-control" placeholder="Number"/>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-md-12">
+                      <div class="row">
+                        <div class="col-sm-3">
+                          <div class="form-check form-check-primary">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" value="wednesday">
+                              Wednesday
+                            <i class="input-helper"></i>
+                          </label>
+                          </div>
+                        </div>
+                        <div class="col-sm-3">
+                          <input type="text" name="wednesday_time" class="form-control" placeholder="4:00pm - 9:00pm"/>
+                        </div>
+                        <div class="col-sm-4">
+                          <input type="text" name="wednesday_hospital" class="form-control" placeholder="Hospital"/>
+                        </div>
+                        <div class="col-sm-2">
+                          <input type="text" name="wednesday_patient" class="form-control" placeholder="Number"/>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-md-12">
+                      <div class="row">
+                        <div class="col-sm-3">
+                          <div class="form-check form-check-primary">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" value="thursday">
+                              Thursday
+                            <i class="input-helper"></i>
+                          </label>
+                          </div>
+                        </div>
+                        <div class="col-sm-3">
+                          <input type="text" name="thursday_time" class="form-control" placeholder="4:00pm - 9:00pm"/>
+                        </div>
+                        <div class="col-sm-4">
+                          <input type="text" name="thursday_hospital" class="form-control" placeholder="Hospital"/>
+                        </div>
+                        <div class="col-sm-2">
+                          <input type="text" name="thursday_patient" class="form-control" placeholder="Number"/>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-md-12">
+                      <div class="row">
+                        <div class="col-sm-3">
+                          <div class="form-check form-check-primary">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" value="friday">
+                              Friday
+                            <i class="input-helper"></i>
+                          </label>
+                          </div>
+                        </div>
+                        <div class="col-sm-3">
+                          <input type="text" name="friday_time" class="form-control" placeholder="4:00pm - 9:00pm"/>
+                        </div>
+                        <div class="col-sm-4">
+                          <input type="text" name="friday_hospital" class="form-control" placeholder="Hospital"/>
+                        </div>
+                        <div class="col-sm-2">
+                          <input type="text" name="friday_patient" class="form-control" placeholder="Number"/>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-md-12">
+                      <div class="row">
+                        <div class="col-sm-3">
+                          <div class="form-check form-check-primary">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" value="saturday">
+                              Saturday
+                            <i class="input-helper"></i>
+                          </label>
+                          </div>
+                        </div>
+                        <div class="col-sm-3">
+                          <input type="text" name="saturday_time" class="form-control" placeholder="4:00pm - 9:00pm"/>
+                        </div>
+                        <div class="col-sm-4">
+                          <input type="text" name="saturday_hospital" class="form-control" placeholder="Hospital"/>
+                        </div>
+                        <div class="col-sm-2">
+                          <input type="text" name="saturday_patient" class="form-control" placeholder="Number"/>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
-                <div class="col-md-6">
-                  <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">State</label>
-                    <div class="col-sm-9">
-                      <input type="text" class="form-control" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Address 2</label>
-                    <div class="col-sm-9">
-                      <input type="text" class="form-control" />
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Postcode</label>
-                    <div class="col-sm-9">
-                      <input type="text" class="form-control" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">City</label>
-                    <div class="col-sm-9">
-                      <input type="text" class="form-control" />
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Country</label>
-                    <div class="col-sm-9">
-                      <select class="form-control">
-                        <option>America</option>
-                        <option>Italy</option>
-                        <option>Russia</option>
-                        <option>Britain</option>
-                      </select>
-                    </div>
-                  </div>
+                <div class="col-md-12">
+                  <button type="submit" class="btn btn-primary mr-2">Add Doctor</button>
                 </div>
               </div>
             </form>
