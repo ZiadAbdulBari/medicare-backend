@@ -2,6 +2,7 @@ const router = require('express').Router();
 const User = require('../models/user.model')
 const CoreService = require("../models/service.model");
 const MedicalService = require("../models/medical.model");
+const Appointment = require('../models/appointment.model');
 router.get('/home', async (req,res)=>{
     res.render('pages/index', {
         title: 'Home',
@@ -40,8 +41,10 @@ router.get('/create-appointment', async (req,res)=>{
     });
 })
 router.get('/all-appointment', async (req,res)=>{
+    const appointmentList = await Appointment.find();
     res.render('pages/all-appointment', {
         title: 'All Appointment',
+        appointmentList,
     });
 })
 

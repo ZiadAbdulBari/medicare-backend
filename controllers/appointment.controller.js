@@ -3,23 +3,24 @@ const User = require("../models/user.model");
 const {createAppointmentValidation} = require('../helper/validation');
 
 const checkAvailability = async (req,res)=>{
-    if(req.method!='post'){
+    if(req.method!='POST'){
         return res.status(405).json({
             "status":405,
             "mgs":"method not allowed"
         })
     }
     try{
-        const weekDays = ['sunday','monday','tuesday','wednesday','thursday','friday'];
+        const weekDays = ['sunday','monday','tuesday','wednesday','thursday','friday','saturday'];
         const date = new Date(req.body.date);
         const dayNo = date.getDay();
         const day = weekDays[dayNo];
         const doctor = await User.findOne({_id:req.params.id});
+        console.log(doctor.available[dayNo].day);
         if(doctor.available[dayNo].day==day){
             const patient = parseInt(doctor.available[dayNo].patient_cheack);
             const totalNumberOfPatient = await Appointment.find({doctor_id:req.params.id, chosen_date:req.body.date});
             if(patient==totalNumberOfPatient.length){
-                return res.status(200).json({
+                return res.status(200).JSON({
                     "status":200,
                     "mgs":"Sit is not empty",
                 })
@@ -47,9 +48,6 @@ const checkAvailability = async (req,res)=>{
             "mgs":"server error"
         })
     }
-
-    
-    console.log(doctor);
 }
 
 const createdAppointment = async(req, res)=>{

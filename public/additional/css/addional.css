@@ -1,0 +1,9 @@
+.mc-display,.mc-date--picked {
+    background-color: #4B49AC!important;
+}
+.mc-table__weekday,.mc-btn--success{
+    color: #4B49AC!important;
+}
+.mc-date--today{
+    background-color: #a6a4f1!important;
+}
