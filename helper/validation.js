@@ -10,6 +10,7 @@ const medicalServiceValidation = (value)=>{
     return schema.validate(value);
 }
 const coreServiceValidation = (value)=>{
+    console.log(value);
     const schema = Joi.object({
         service_name: Joi.string().min(5),
         title: Joi.string().min(5),
@@ -39,7 +40,7 @@ const createAppointmentValidation = (value)=>{
     })
     return schema.validate(value);
 }
-module.exports = medicalServiceValidation;
-module.exports = coreServiceValidation;
-module.exports = doctorListValidation;
+module.exports.medicalServiceValidation = medicalServiceValidation;
+module.exports.coreServiceValidation = coreServiceValidation;
+module.exports.doctorListValidation = doctorListValidation;
 module.exports.createAppointmentValidation = createAppointmentValidation;

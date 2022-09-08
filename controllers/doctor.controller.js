@@ -1,5 +1,5 @@
 const Doctor = require("../models/doctor.model");
-const doctorListValidation = require('../helper/validation');
+const {doctorListValidation} = require('../helper/validation');
 
 const createDoctor = async (req,res)=>{
     const {error} = doctorListValidation(req.body);

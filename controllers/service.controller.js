@@ -1,7 +1,8 @@
 const CoreService = require("../models/service.model");
-const coreServiceValidation = require('../helper/validation');
+const {coreServiceValidation} = require('../helper/validation');
 
 const createCoreService = async (req,res)=>{
+    // console.log(req.body);
     const {error} = coreServiceValidation(req.body);
     if(error){
         console.log(error);
@@ -16,10 +17,10 @@ const createCoreService = async (req,res)=>{
     });
     try{
         await service.save();
-        res.status(201).json({
-            "status":201,
-            "mgs":"Successfully created",
-        })
+        // res.status(201).json({
+        //     "status":201,
+        //     "mgs":"Successfully created",
+        // })
         return res.redirect('/admin/core-service');
     }
     catch(error){
