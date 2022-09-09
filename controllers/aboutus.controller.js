@@ -30,8 +30,23 @@ const sendFeedback = async (req,res)=>{
 }
 const activateFeedback = async(req,res)=>{
     const feedback = await Feedback.findOne({_id:req.params.id});
-    feedback.is_accept = req.body.is_accept;
-    feedback.is_showing = req.body.is_showing;
+    if(req.body.is_accept=='accept'){
+        if(feedback.is_accept==true){
+            console.log(feedback.is_accept);
+            feedback.is_accept=false;
+        }
+        else{
+            feedback.is_accept=true;
+        }
+    }
+    if(req.body.is_showing=='active'){
+        if(feedback.is_showing==true){
+            feedback.is_showing=false;
+        }
+        else{
+            feedback.is_showing=true;
+        }
+    }
     try{
         await feedback.save();
         return res.status(200).json({

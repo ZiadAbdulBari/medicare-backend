@@ -1,0 +1,102 @@
+<%- include('../layouts/header'); %>
+<div class="row">
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Appointment List</h4>
+            <!-- <p class="card-description">
+              Add class <code>.table-striped</code>
+            </p> -->
+            <div class="table-responsive">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>
+                      User Name
+                    </th>
+                    <th>
+                      Feedback
+                    </th>
+                    <th>
+                      Accept
+                    </th>
+                    <th>
+                      Active
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% if(allFeedback.length>0){ %>
+                    <% allFeedback.forEach(list=>{ %>
+                        <tr>
+                            <td class="py-1">
+                                <%= list.user_name %>
+                            </td>
+                            <td>
+                                <%= list.feedback %>
+                            </td>
+                            <td>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <% if(list.is_accept==true){%>
+                                            <input type="checkbox" name="is_accept" class="form-check-input" onchange="changeStatus('accept', '<%=list._id%>')" checked >
+                                            <i class="input-helper"></i>
+                                        <%}%>
+                                        <% if(list.is_accept==false){%>
+                                            <input type="checkbox" name="is_accept" class="form-check-input" onchange="changeStatus('accept', '<%=list._id%>')" >
+                                            <i class="input-helper"></i>
+                                        <%}%>
+                                        
+                                    </label>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <% if(list.is_showing==true){%>
+                                            <input type="checkbox" name="is_showing" class="form-check-inputs" onchange="changeStatus('active', '<%=list._id%>')" checked >
+                                            <i class="input-helper"></i>
+                                        <%}%>
+                                        <% if(list.is_showing==false){%>
+                                            <input type="checkbox" name="is_showing" class="form-check-inputs" onchange="changeStatus('active', '<%=list._id%>')" >
+                                            <i class="input-helper"></i>
+                                        <%}%>
+                                    </label>
+                                </div>
+                            </td>
+                        </tr>
+                    <% }) %>
+                  <% } %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>
+<%- include('../layouts/footer'); %>
+<script>
+    const changeStatus= (status,id)=>{
+        let data;
+        if(status=='accept'){
+            data={
+                is_accept:status 
+            }
+        }
+        if(status=='active'){
+            data={
+                is_showing:status 
+            }
+        }
+        let url = window.location.origin+'/aboutus/feedback-status/'+id;
+        fetch(url, {
+            method: "POST",
+            headers: {'Content-Type': 'application/json'}, 
+            body: JSON.stringify(data)
+        }).then(res => {
+        // console.log("Request complete! response:", res);
+        console.log(res);
+      });
+        // console.log(status,id);
+    }
+</script>

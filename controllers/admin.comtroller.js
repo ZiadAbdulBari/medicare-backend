@@ -3,6 +3,7 @@ const User = require('../models/user.model')
 const CoreService = require("../models/service.model");
 const MedicalService = require("../models/medical.model");
 const Appointment = require('../models/appointment.model');
+const Feedback = require('../models/feedback.model');
 router.get('/home', async (req,res)=>{
     res.render('pages/index', {
         title: 'Home',
@@ -54,6 +55,13 @@ router.get('/all-appointment', async (req,res)=>{
     res.render('pages/all-appointment', {
         title: 'All Appointment',
         appointmentList,
+    });
+})
+router.get('/feedback-list', async (req,res)=>{
+    const allFeedback = await Feedback.find();
+    res.render('pages/feedback', {
+        title: 'Feedback List',
+        allFeedback,
     });
 })
 
