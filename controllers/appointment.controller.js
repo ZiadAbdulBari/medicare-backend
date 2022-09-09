@@ -15,12 +15,11 @@ const checkAvailability = async (req,res)=>{
         const dayNo = date.getDay();
         const day = weekDays[dayNo];
         const doctor = await User.findOne({_id:req.params.id});
-        // console.log(doctor.available[dayNo].day);
         if(doctor.available[dayNo].day==day){
             const patient = parseInt(doctor.available[dayNo].patient_cheack);
             const totalNumberOfPatient = await Appointment.find({doctor_id:req.params.id, chosen_date:req.body.date});
             if(patient==totalNumberOfPatient.length){
-                return res.status(200).JSON({
+                return res.status(200).json({
                     "status":200,
                     "mgs":"Sit is not empty",
                 })
@@ -54,21 +53,23 @@ const createdAppointment = async(req, res)=>{
     const {error} = createAppointmentValidation(req.body);
     if(error){
         return res.status(400).json({
-            'mgs':'invailid data',
+            'mgs':error,
         })
     }
     const appointment = new Appointment({
         user_name: req.body.user_name,
         doctor_name: req.body.doctor_name,
-        doctor_id: req.params.id,
+        doctor_id: req.body.doctor_id,
         patient_name: req.body.patient_name,
         contact: req.body.contact,
         age: req.body.age,
         disease: req.body.disease,
         chosen_date: req.body.chosen_date,
     })
+
     try{
-        appointment.save();
+        console.log(appointment);
+        await appointment.save();
         return res.status(200).json({
             "status": 200,
             "mgs":"created",

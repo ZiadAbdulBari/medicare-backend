@@ -3,7 +3,7 @@ const mongooes = require('mongoose');
 const appointment = new mongooes.Schema({
     user_name:{
         type:String,
-        required:true
+        required:false
     },
     doctor_name:{
         type:String,
