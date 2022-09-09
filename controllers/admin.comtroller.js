@@ -40,6 +40,15 @@ router.get('/create-appointment', async (req,res)=>{
         title: 'Create Appointment',
     });
 })
+router.get('/appointment-form/:id', async (req,res)=>{
+    const doctor = await User.findOne({_id: req.params.id});
+    const date  = req.query.date;
+    res.render('pages/appointment-form', {
+        title: 'Create Appointment',
+        doctor,
+        date,
+    });
+})
 router.get('/all-appointment', async (req,res)=>{
     const appointmentList = await Appointment.find();
     res.render('pages/all-appointment', {

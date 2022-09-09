@@ -1,0 +1,88 @@
+<%- include('../layouts/header'); %>
+<div class="row">
+    <div class="col-12 grid-margin">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Appointment</h4>
+            <form class="form-sample">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">User Name</label>
+                    <div class="col-sm-9">
+                      <input type="text" name="user_name" class="form-control" placeholder="Your name"/>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Doctor Name</label>
+                    <div class="col-sm-9">
+                      <input type="text" name="doctor_name" class="form-control" value="<%=doctor.name%>" readonly/>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Patient Name</label>
+                    <div class="col-sm-9">
+                      <input type="text" name="patient_name" class="form-control" placeholder="Patient name"/>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Contact</label>
+                    <div class="col-sm-9">
+                      <input type="text" name="contact" class="form-control" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Age</label>
+                    <div class="col-sm-9">
+                      <input type="text" name="age" class="form-control" placeholder="Patient age"/>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Disease</label>
+                    <div class="col-sm-9">
+                      <input type="text" name="disease" class="form-control" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Select Date</label>
+                    <div class="col-sm-9">
+                      <input type="text" name="chosen_date" class="form-control" value="<%=date%>" readonly/>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label class="col-sm-8 col-form-label"></label>
+                    <div class="col-sm-2">
+                      <button type="submit" class="btn btn-primary mr-2">Cancle</button>
+                    </div>
+                    <div class="col-sm-2">
+                      <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+    </div>
+</div>
+<%- include('../layouts/footer'); %>

@@ -15,7 +15,7 @@ const checkAvailability = async (req,res)=>{
         const dayNo = date.getDay();
         const day = weekDays[dayNo];
         const doctor = await User.findOne({_id:req.params.id});
-        console.log(doctor.available[dayNo].day);
+        // console.log(doctor.available[dayNo].day);
         if(doctor.available[dayNo].day==day){
             const patient = parseInt(doctor.available[dayNo].patient_cheack);
             const totalNumberOfPatient = await Appointment.find({doctor_id:req.params.id, chosen_date:req.body.date});
