@@ -6,6 +6,7 @@ require('dotenv').config();
 const adminRouter = require('./routers/home.router');
 const userRouter = require('./routers/user.router');
 const appointmentRouter = require('./routers/appointment.router');
+const aboutus = require('./routers/aboutus.router');
 const adminPannel = require('./controllers/admin.comtroller');
 
 
@@ -18,6 +19,7 @@ app.use('/admin',adminPannel);
 app.use('/home/',adminRouter);
 app.use('/user/',userRouter);
 app.use('/doctor/',appointmentRouter);
+app.use('/aboutus/', aboutus);
 
 //404 page
 app.use(function(req, res, next){

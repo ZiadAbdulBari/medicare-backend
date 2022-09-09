@@ -141,7 +141,7 @@ const addDoctor = async (req,res)=>{
         })
     }
     const email_check  = await User.findOne({email:req.body.email});
-    console.log(email_check);
+    // console.log(email_check);
     if(email_check){
         return res.status(409).json({
             "status": 409,

@@ -68,7 +68,7 @@ const createdAppointment = async(req, res)=>{
     })
 
     try{
-        console.log(appointment);
+        // console.log(appointment);
         await appointment.save();
         return res.status(200).json({
             "status": 200,
@@ -87,7 +87,7 @@ const createdAppointment = async(req, res)=>{
 const getAppointmentList = async(req,res)=>{
     if(req.method=='get'){
         const list = await Appointment.find({doctor_id: req.params.id});
-        console.log(list)
+        // console.log(list)
         return res.status(200).json({
             "data":list,
         })

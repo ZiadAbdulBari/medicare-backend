@@ -40,7 +40,15 @@ const createAppointmentValidation = (value)=>{
     })
     return schema.validate(value);
 }
+const feedbackValidation = (value)=>{
+    const schema = Joi.object({
+        user_name: Joi.string().min(3),
+        feedback: Joi.string().min(10),
+    })
+    return schema.validate(value);
+}
 module.exports.medicalServiceValidation = medicalServiceValidation;
 module.exports.coreServiceValidation = coreServiceValidation;
 module.exports.doctorListValidation = doctorListValidation;
 module.exports.createAppointmentValidation = createAppointmentValidation;
+module.exports.feedbackValidation = feedbackValidation;
