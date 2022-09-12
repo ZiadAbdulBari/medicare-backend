@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -10,7 +11,8 @@ const aboutus = require('./routers/aboutus.router');
 const adminPannel = require('./controllers/admin.comtroller');
 
 
-//body parse
+
+app.use(cors())
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.set('view engine', 'ejs');
@@ -37,7 +39,7 @@ app.use(function(req, res, next){
   
     // default to plain-text. send()
     res.type('txt').send('Not found');
-  });
+});
 
 //database connection
 mongoose.connect(process.env.DB_URL)
@@ -49,7 +51,7 @@ mongoose.connect(process.env.DB_URL)
 });
 
 //server connection
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 4000;
 app.listen(PORT,()=>{
     console.log('Server Connected at port',PORT);
 })
