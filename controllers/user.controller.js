@@ -20,10 +20,60 @@ const userRegistration = async (req, res)=>{
     const password = await bcrypt.hash(req.body.password, 10);
     let user;
     if(req.params.user==='doctor'){
+        let available = [
+            {
+                "day":"",
+                "time":"",
+                "hospital":"",
+                "patient_cheack":"",
+            },
+            {
+                "day":"",
+                "time":"",
+                "hospital":"",
+                "patient_cheack":"",
+            },
+            {
+                "day":"",
+                "time":"",
+                "hospital":"",
+                "patient_cheack":"",
+            },
+            {
+                "day":"",
+                "time":"",
+                "hospital":"",
+                "patient_cheack":"",
+            },
+            {
+                "day":"",
+                "time":"",
+                "hospital":"",
+                "patient_cheack":"",
+            },
+            {
+                "day":"",
+                "time":"",
+                "hospital":"",
+                "patient_cheack":"",
+            },
+            {
+                "day":"",
+                "time":"",
+                "hospital":"",
+                "patient_cheack":"",
+            },
+        ];
         user = new User({
             name: req.body.name,
             email: req.body.email,
             password:password,
+            work_at: "",
+            speacialist_on: "",
+            degree: "",
+            NID: "",
+            available: "",
+            contact: "",
             role:'doctor',
         })
     }
@@ -32,6 +82,10 @@ const userRegistration = async (req, res)=>{
             name: req.body.name,
             email: req.body.email,
             password:password,
+            contact:"",
+            address:"",
+            age:"",
+            profile_img:"",
             role:'patient',
         })
     }
@@ -58,7 +112,8 @@ const editUserProfile = async (req, res)=>{
             "mgs":"method not allowed"
         })
     }
-    const userData = await User.findOne({_id:req.id});
+    try{
+    const userData = await User.findOne({_id:req.params.id});
     if(userData.role === 'doctor'){
         let available = [
             {
@@ -113,18 +168,19 @@ const editUserProfile = async (req, res)=>{
         userData.available = available;
     }
     if(userData.role === 'patient'){
+        console.log(userData);
         userData.name = req.body.name;
         userData.email = req.body.email;
         userData.contact = req.body.contact;
         userData.address = req.body.address;
         userData.age = req.body.age;
     }    
-    try{
+    
         await userData.save();
         return res.status(200).json({
             "status":200,
             "mgs":"successfully updated",
-            "data":userData
+            userData
         })
     }
     catch(error){
@@ -203,7 +259,6 @@ const addDoctor = async (req,res)=>{
             NID: req.body.NID,
             available: available,
             contact: req.body.contact,
-            contact: req.body.contact,
             role:'doctor',
         })
         try{
@@ -227,13 +282,15 @@ const userLogin = async (req,res)=>{
     try{
         const email = req.body.email;
         const checkEmail = await User.find({email:email});
+        // console.log(checkEmail);
         if(checkEmail.length>0){
             const checkPassword = bcrypt.compare(req.body.password, checkEmail[0].password);
             if(checkPassword){
                 const token = jwt.sign({ id: checkEmail[0]._id, email: checkEmail[0].email, role:  checkEmail[0].role }, process.env.JWT_TOKEN);
                 res.status(200).json({
-                    "access_token":"Bearer "+token,
-                    "mgs": "logged in"
+                    "access_token": token,
+                    "mgs": "logged in",
+                    checkEmail,
                 })
             }
         }
@@ -255,7 +312,7 @@ const userProfileData = async (req,res)=>{
         if(profileData.length>0){
             res.status(200).json({
                 "status": "200",
-                "data": profileData
+                profileData
             })
         }
     }
