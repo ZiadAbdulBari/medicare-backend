@@ -1,6 +1,7 @@
 const User = require("../models/user.model");
 const { uuid } = require('uuidv4');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 const userRegistration = async (req, res)=>{
     if(req.method !== 'POST'){
@@ -57,7 +58,7 @@ const editUserProfile = async (req, res)=>{
             "mgs":"method not allowed"
         })
     }
-    const userData = await User.findOne({_id:req.params.id});
+    const userData = await User.findOne({_id:req.id});
     if(userData.role === 'doctor'){
         let available = [
             {
@@ -222,6 +223,51 @@ const addDoctor = async (req,res)=>{
     }
     
 }
+const userLogin = async (req,res)=>{
+    try{
+        const email = req.body.email;
+        const checkEmail = await User.find({email:email});
+        if(checkEmail.length>0){
+            const checkPassword = bcrypt.compare(req.body.password, checkEmail[0].password);
+            if(checkPassword){
+                const token = jwt.sign({ id: checkEmail[0]._id, email: checkEmail[0].email, role:  checkEmail[0].role }, process.env.JWT_TOKEN);
+                res.status(200).json({
+                    "access_token":"Bearer "+token,
+                    "mgs": "logged in"
+                })
+            }
+        }
+        else{
+            res.status(401).json({
+                "mgs": "Authentication failed"
+            })
+        }
+    }
+    catch{
+        res.status(401).json({
+            "mgs": "Server error"
+        })
+    }
+};
+const userProfileData = async (req,res)=>{
+    try{
+        const profileData = await User.find({_id:req.id});
+        if(profileData.length>0){
+            res.status(200).json({
+                "status": "200",
+                "data": profileData
+            })
+        }
+    }
+    catch{
+        res.status(404).json({
+            "status": "404",
+            "data": "No data found"
+        })
+    }
+}
 module.exports.userRegistration = userRegistration;
 module.exports.editUserProfile = editUserProfile;
 module.exports.addDoctor = addDoctor;
+module.exports.userLogin = userLogin;
+module.exports.userProfileData = userProfileData;

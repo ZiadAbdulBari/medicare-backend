@@ -11,8 +11,7 @@ const aboutus = require('./routers/aboutus.router');
 const adminPannel = require('./controllers/admin.comtroller');
 
 
-
-app.use(cors())
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.set('view engine', 'ejs');
