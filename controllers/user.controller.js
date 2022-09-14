@@ -72,7 +72,7 @@ const userRegistration = async (req, res)=>{
             speacialist_on: "",
             degree: "",
             NID: "",
-            available: "",
+            available: available,
             contact: "",
             role:'doctor',
         })
