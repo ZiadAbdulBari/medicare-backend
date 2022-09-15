@@ -27,8 +27,8 @@ const checkAvailability = async (req,res)=>{
             else{
                 return res.status(200).json({
                     "status":200,
-                    "mgs":"doctor is available",
-                    "data":req.body.date
+                    "mgs":"Doctor is available",
+                    "data":doctor.available[dayNo],
                 })
 
             }
@@ -36,7 +36,7 @@ const checkAvailability = async (req,res)=>{
         else{
             return res.status(404).json({
                 "status":404,
-                "mgs":"doctor is not available",
+                "mgs":"Doctor is not available",
             })
         }
 
