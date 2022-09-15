@@ -1,6 +1,20 @@
 const Doctor = require("../models/doctor.model");
+const User = require("../models/user.model");
 const {doctorListValidation} = require('../helper/validation');
 
+const getAllDoctor = async (req,res)=>{
+    try{
+        const allDoctor = await User.find({role:req.params.role});
+        res.status(200).json({
+            allDoctor
+        })
+    }
+    catch{
+        res.status(500).json({
+            "mgs":"Server error"
+        })
+    }
+}
 const createDoctor = async (req,res)=>{
     const {error} = doctorListValidation(req.body);
     if(error){
@@ -72,6 +86,8 @@ const deleteDoctor = async (req,res)=>{
         return res.redirect('/');
     });
 }
+
+module.exports.getAllDoctor = getAllDoctor;
 module.exports.createDoctor = createDoctor;
 module.exports.updateDoctor = updateDoctor;
 module.exports.deleteDoctor = deleteDoctor;

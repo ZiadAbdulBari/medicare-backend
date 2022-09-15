@@ -1,6 +1,20 @@
 const CoreService = require("../models/service.model");
 const {coreServiceValidation} = require('../helper/validation');
 
+const getAllCoreService = async (req,res)=>{
+    try{
+        const coreService = await CoreService.find();
+        res.status(200).json({
+            "mgs":"ok",
+            coreService,
+        })
+    }
+    catch{
+        res.status(500).json({
+            "mgs":"Server error",
+        })
+    }
+}
 const createCoreService = async (req,res)=>{
     // console.log(req.body);
     const {error} = coreServiceValidation(req.body);
@@ -76,6 +90,7 @@ const deleteCoreService = async (req,res)=>{
     });
     
 }
+module.exports.getAllCoreService = getAllCoreService;
 module.exports.createCoreService = createCoreService;
 module.exports.updateCoreService = updateCoreService;
 module.exports.deleteCoreService = deleteCoreService;
