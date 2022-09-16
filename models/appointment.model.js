@@ -17,6 +17,10 @@ const appointment = new mongooes.Schema({
         type:String,
         required:true
     },
+    patient_id:{
+        type:String,
+        required:true
+    },
     contact:{
         type:String,
         required:true,

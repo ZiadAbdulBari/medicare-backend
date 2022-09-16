@@ -33,6 +33,7 @@ const createAppointmentValidation = (value)=>{
         doctor_name: Joi.string().min(5),
         doctor_id: Joi.string().required(),
         patient_name: Joi.string().min(3),
+        patient_id: Joi.string().required(),
         contact: Joi.string().min(11),
         age: Joi.number(),
         disease:Joi.string().min(3),

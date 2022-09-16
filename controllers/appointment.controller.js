@@ -19,40 +19,39 @@ const checkAvailability = async (req,res)=>{
             const patient = parseInt(doctor.available[dayNo].patient_cheack);
             const totalNumberOfPatient = await Appointment.find({doctor_id:req.params.id, chosen_date:req.body.date});
             if(patient==totalNumberOfPatient.length){
-                return res.status(200).json({
+                res.status(200).json({
                     "status":200,
-                    "mgs":"Sit is not empty",
+                    "mgs":"Patient Limit has been fulfilled.",
                 })
             }
             else{
-                return res.status(200).json({
+                res.status(200).json({
                     "status":200,
-                    "mgs":"Doctor is available",
+                    "mgs":"Doctor is available.",
                     "data":doctor.available[dayNo],
                 })
 
             }
         }
         else{
-            return res.status(404).json({
-                "status":404,
+            res.status(200).json({
+                "status":200,
                 "mgs":"Doctor is not available",
             })
         }
 
     }
     catch(erroe){
-        return res.status(500).json({
+        res.status(500).json({
             "status":500,
             "mgs":"server error"
         })
     }
 }
-
 const createdAppointment = async(req, res)=>{
     const {error} = createAppointmentValidation(req.body);
     if(error){
-        return res.status(400).json({
+        res.status(400).json({
             'mgs':error,
         })
     }
@@ -61,6 +60,7 @@ const createdAppointment = async(req, res)=>{
         doctor_name: req.body.doctor_name,
         doctor_id: req.body.doctor_id,
         patient_name: req.body.patient_name,
+        patient_id: req.body.patient_id,
         contact: req.body.contact,
         age: req.body.age,
         disease: req.body.disease,
@@ -70,30 +70,42 @@ const createdAppointment = async(req, res)=>{
     try{
         // console.log(appointment);
         await appointment.save();
-        return res.status(200).json({
+        res.status(200).json({
             "status": 200,
             "mgs":"created",
             "data":appointment
         })
     }
-    catch(erroe){
-        return res.status(500).json({
+    catch(error){
+        res.status(500).json({
             "status": 500,
             "mgs":error,
         })
     }
 }
-
 const getAppointmentList = async(req,res)=>{
     if(req.method=='get'){
         const list = await Appointment.find({doctor_id: req.params.id});
-        // console.log(list)
-        return res.status(200).json({
+        res.status(200).json({
             "data":list,
         })
     }
     else{
-        return res.status(405).json({
+        res.status(405).json({
+            "status":405,
+            "mgs":"method not allowed"
+        })
+    }
+}
+const patientHistory = async(req,res)=>{
+    if(req.method=='get'){
+        const list = await Appointment.find({patient_id: req.params.id});
+        res.status(200).json({
+            "data":list,
+        })
+    }
+    else{
+        res.status(405).json({
             "status":405,
             "mgs":"method not allowed"
         })
@@ -102,3 +114,4 @@ const getAppointmentList = async(req,res)=>{
 module.exports.checkAvailability = checkAvailability;
 module.exports.createdAppointment = createdAppointment;
 module.exports.getAppointmentList = getAppointmentList;
+module.exports.patientHistory = patientHistory;
