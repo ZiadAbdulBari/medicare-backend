@@ -1,6 +1,19 @@
 const MedicalService = require('../models/medical.model');
 const {medicalServiceValidation} = require('../helper/validation');
 
+const getMedicalService = async (req,res)=>{
+    try{
+        const medicalService = await MedicalService.find();
+        res.status(200).json({
+            medicalService
+        })
+    }
+    catch(error){
+        res.status(500).json({
+            "mgs":"server error"
+        })
+    }
+}
 const editMedicalService= async (req,res)=>{
     const {error} = medicalServiceValidation(req.body);
     if(error){
@@ -30,4 +43,5 @@ const editMedicalService= async (req,res)=>{
     }
 }
 
-module.exports = editMedicalService;
+module.exports.getMedicalService = getMedicalService;
+module.exports.editMedicalService = editMedicalService;

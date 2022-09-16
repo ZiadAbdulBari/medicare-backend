@@ -168,7 +168,7 @@ const editUserProfile = async (req, res)=>{
         userData.available = available;
     }
     if(userData.role === 'patient'){
-        console.log(userData);
+        // console.log(userData);
         userData.name = req.body.name;
         userData.email = req.body.email;
         userData.contact = req.body.contact;

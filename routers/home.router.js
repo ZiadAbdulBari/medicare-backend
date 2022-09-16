@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const editMedicalService = require('../controllers/medical.controller');
+const {editMedicalService, getMedicalService} = require('../controllers/medical.controller');
 const {getAllCoreService, createCoreService,updateCoreService , deleteCoreService} = require('../controllers/service.controller');
 const {getAllDoctor,createDoctor,updateDoctor , deleteDoctor} = require('../controllers/doctor.controller');
 
+router.get('/medical-service/', getMedicalService);
 router.post('/medical/:id', editMedicalService);
 //core service route
 router.get('/all-core-service',getAllCoreService);

@@ -98,7 +98,7 @@ const getAppointmentList = async(req,res)=>{
     }
 }
 const patientHistory = async(req,res)=>{
-    if(req.method=='get'){
+    if(req.method=='get' ||req.method=='GET'){
         const list = await Appointment.find({patient_id: req.params.id});
         res.status(200).json({
             "data":list,

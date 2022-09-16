@@ -1,5 +1,19 @@
 const Feedback = require("../models/feedback.model");
 const {feedbackValidation} = require("../helper/validation");
+
+const getFeedback = async (req,res)=>{
+    try{
+        const feedback = await Feedback.find({is_showing:true});
+        return res.status(200).json({
+            feedback
+        })
+    }
+    catch(error){
+        res.status(500).json({
+            "mgs":"server error",
+        })
+    }
+};
 const sendFeedback = async (req,res)=>{
     const {error} = feedbackValidation(req.body);
     if(error){
@@ -61,5 +75,6 @@ const activateFeedback = async(req,res)=>{
         })
     }
 }
+module.exports.getFeedback = getFeedback
 module.exports.sendFeedback = sendFeedback
 module.exports.activateFeedback = activateFeedback

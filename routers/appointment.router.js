@@ -5,6 +5,6 @@ const {checkAvailability, createdAppointment, getAppointmentList, patientHistory
 router.post('/schedule-check/:id',checkAvailability);
 router.post('/appointment',createdAppointment);
 router.post('/get-appointment/:id',getAppointmentList);
-router.post('/patient-histiry/:id',patientHistory);
+router.get('/patient-history/:id',patientHistory);
 
 module.exports = router;
