@@ -19,7 +19,6 @@ const testionial = new mongoose.Schema({
     },
     created_on:{
         type:Date,
-
     }
 })
 

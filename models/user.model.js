@@ -1,3 +1,4 @@
+const { boolean } = require("joi");
 const mongoose = require("mongoose");
 
 const user = new mongoose.Schema({
@@ -61,6 +62,10 @@ const user = new mongoose.Schema({
     role:{
         type: String,
         required: true
+    },
+    is_activeted:{
+        type:Boolean,
+        required:true,
     },
     joined_at:{
         type: Date,

@@ -32,6 +32,9 @@
                     <th>
                       Available
                     </th>
+                    <th>
+                      Activetion Status
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -61,6 +64,20 @@
                         </td>
                         <td>
                           ------
+                        </td>
+                        <td>
+                          <div class="form-check">
+                            <label class="form-check-label">
+                              <% if(doc.is_activeted===true){ %>
+                                <input type="checkbox" name="is_activeted" class="form-check-input" onchange="changeStatus('<%=doc.is_activeted%>','<%=doc._id%>')" checked>
+                                <i class="input-helper"></i>
+                              <% } %>
+                              <% if(doc.is_activeted===false){ %>
+                                <input type="checkbox" name="is_activeted" class="form-check-input" onchange="changeStatus('<%=doc.is_activeted%>','<%=doc._id%>')">
+                                <i class="input-helper"></i>
+                              <% } %>
+                            </label>
+                        </div>
                         </td>
                       </tr>
                     <% }) %>
@@ -187,3 +204,31 @@
     </div>
 </div>
 <%- include('../layouts/footer'); %>
+<script>
+  const changeStatus= (status,id)=>{
+    // const doctorStatus = Boolean(status);
+    let data;
+    if(status==true || status=='true'){
+      data = {
+        is_activeted:false
+      }
+    }
+    if(status==false || status=='false'){
+      data = {
+        is_activeted:true
+      }
+    }
+    // console.log(data);
+    
+      let url = window.location.origin+'/user/edit-status/'+id;
+      fetch(url, {
+          method: "POST",
+          headers: {'Content-Type': 'application/json'}, 
+          body: JSON.stringify(data)
+      }).then(res => {
+      // console.log(res);
+        console.log(res);
+      });
+      // console.log(status,id);
+  }
+</script>

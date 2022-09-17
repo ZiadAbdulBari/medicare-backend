@@ -75,6 +75,7 @@ const userRegistration = async (req, res)=>{
             available: available,
             contact: "",
             role:'doctor',
+            is_activeted:false,
         })
     }
     if(req.params.user==='patient'){
@@ -87,6 +88,7 @@ const userRegistration = async (req, res)=>{
             age:"",
             profile_img:"",
             role:'patient',
+            is_activeted:true,
         })
     }
     try{
@@ -188,6 +190,29 @@ const editUserProfile = async (req, res)=>{
             "status":500,
             "mgs":"server error",
         })
+    }
+}
+const changeDoctorStatus = async (req,res)=>{
+    try{
+        const userData = await User.findOne({_id:req.params.id});
+        if(userData!={}){
+            userData.is_activeted = req.body.is_activeted;
+            await userData.save();
+            res.status(200).json({
+                "mgs":"status updated",
+            });
+        }
+        else{
+            res.status(404).json({
+                "mgs":"no user found"
+            });
+        }
+
+    }
+    catch(error){
+        res.status(500).json({
+            "mgs":"server error"
+        });
     }
 }
 const addDoctor = async (req,res)=>{
@@ -325,6 +350,7 @@ const userProfileData = async (req,res)=>{
 }
 module.exports.userRegistration = userRegistration;
 module.exports.editUserProfile = editUserProfile;
+module.exports.changeDoctorStatus = changeDoctorStatus;
 module.exports.addDoctor = addDoctor;
 module.exports.userLogin = userLogin;
 module.exports.userProfileData = userProfileData;
