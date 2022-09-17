@@ -4,7 +4,7 @@ const {doctorListValidation} = require('../helper/validation');
 
 const getAllDoctor = async (req,res)=>{
     try{
-        const allDoctor = await User.find({role:req.params.role});
+        const allDoctor = await User.find({role:req.params.role, is_activeted:true});
         res.status(200).json({
             allDoctor
         })

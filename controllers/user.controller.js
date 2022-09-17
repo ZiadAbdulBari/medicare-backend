@@ -309,13 +309,20 @@ const userLogin = async (req,res)=>{
         const checkEmail = await User.find({email:email});
         // console.log(checkEmail);
         if(checkEmail.length>0){
-            const checkPassword = bcrypt.compare(req.body.password, checkEmail[0].password);
-            if(checkPassword){
-                const token = jwt.sign({ id: checkEmail[0]._id, email: checkEmail[0].email, role:  checkEmail[0].role }, process.env.JWT_TOKEN);
-                res.status(200).json({
-                    "access_token": token,
-                    "mgs": "logged in",
-                    checkEmail,
+            if((checkEmail[0].role=='doctor' && checkEmail[0].is_activeted==true ) || checkEmail[0].role=='patient'){
+                const checkPassword = bcrypt.compare(req.body.password, checkEmail[0].password);
+                if(checkPassword){
+                    const token = jwt.sign({ id: checkEmail[0]._id, email: checkEmail[0].email, role:  checkEmail[0].role }, process.env.JWT_TOKEN);
+                    res.status(200).json({
+                        "access_token": token,
+                        "mgs": "logged in",
+                        checkEmail,
+                    })
+                }
+            }
+            if(checkEmail[0].role=='doctor' && checkEmail[0].is_activeted==false){
+                res.status(204).json({
+                    "mgs": "Account is not activated",
                 })
             }
         }
