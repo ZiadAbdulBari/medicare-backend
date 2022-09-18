@@ -64,6 +64,7 @@ const createdAppointment = async(req, res)=>{
         contact: req.body.contact,
         age: req.body.age,
         disease: req.body.disease,
+        status:'Pandding',
         chosen_date: req.body.chosen_date,
     })
 
@@ -84,8 +85,8 @@ const createdAppointment = async(req, res)=>{
     }
 }
 const getAppointmentList = async(req,res)=>{
-    if(req.method=='get'){
-        const list = await Appointment.find({doctor_id: req.params.id});
+    if(req.method=='get' || req.method=='GET'){
+        const list = await Appointment.find({doctor_id: req.params.id,chosen_date:req.query.date});
         res.status(200).json({
             "data":list,
         })
@@ -111,7 +112,29 @@ const patientHistory = async(req,res)=>{
         })
     }
 }
+const changeAppointmentStatus = async(req,res)=>{
+    try{
+        const list = await Appointment.findOne({_id:req.params.id});
+        if((list.status=='completed' || list.status=='Completed') || (list.status=='cancel' || list.status=='Cancel')){
+            res.status(200).json({
+                "mgs":"can't change the status",
+            })
+        }
+        console.log("chole ashche");
+        list.status = req.body.status;
+        await list.save();
+        res.status(200).json({
+            "mgs":"ststus changed successfully",
+        })
+    }
+    catch(error){
+        res.status(500).json({
+            "mgs":"Server error",
+        })
+    }
+}
 module.exports.checkAvailability = checkAvailability;
 module.exports.createdAppointment = createdAppointment;
 module.exports.getAppointmentList = getAppointmentList;
 module.exports.patientHistory = patientHistory;
+module.exports.changeAppointmentStatus = changeAppointmentStatus;

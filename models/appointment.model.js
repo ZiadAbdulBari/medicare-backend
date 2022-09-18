@@ -37,6 +37,10 @@ const appointment = new mongooes.Schema({
         type:Date,
         required:true
     },
+    status:{
+        type:String,
+        required:true,
+    },
     creation_date:{
         type:Date,
         default: Date.now
