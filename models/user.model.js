@@ -2,14 +2,6 @@ const { boolean } = require("joi");
 const mongoose = require("mongoose");
 
 const user = new mongoose.Schema({
-    // patient:{
-    //     type:Array,
-    //     required:false,
-    // },
-    // doctoc:{
-    //     type:Array,
-    //     required:false
-    // }
     name:{
         type:String,
         required:false,
@@ -24,7 +16,7 @@ const user = new mongoose.Schema({
         required:false
     },
     profile_img:{
-        trype:String,
+        type:String,
         required:false,
     },
     work_at:{
