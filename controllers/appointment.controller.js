@@ -19,7 +19,7 @@ const checkAvailability = async (req,res)=>{
             const patient = parseInt(doctor.available[dayNo].patient_cheack);
             const totalNumberOfPatient = await Appointment.find({doctor_id:req.params.id, chosen_date:req.body.date});
             if(patient==totalNumberOfPatient.length){
-                res.status(200).json({
+                return res.status(200).json({
                     "status":200,
                     "mgs":"Patient Limit has been fulfilled.",
                 })
@@ -28,9 +28,10 @@ const checkAvailability = async (req,res)=>{
                 res.status(200).json({
                     "status":200,
                     "mgs":"Doctor is available.",
+                    "permission":true,
                     "data":doctor.available[dayNo],
                 })
-
+                
             }
         }
         else{

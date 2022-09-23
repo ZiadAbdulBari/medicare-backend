@@ -5,15 +5,9 @@
           <div class="card-body">
             <h4 class="card-title">Appointment</h4>
             <form class="form-sample" action="/doctor/appointment" method="POST" >
+              <input type="text" name="user_name" class="form-control" placeholder="Your name" value="None" hidden/>
+              <input type="text" name="patient_id" class="form-control" placeholder="Your name" value="None" hidden/>
               <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">User Name</label>
-                    <div class="col-sm-9">
-                      <input type="text" name="user_name" class="form-control" placeholder="Your name"/>
-                    </div>
-                  </div>
-                </div>
                 <div class="col-md-6">
                   <div class="form-group row">
                     <label class="col-sm-3 col-form-label">Doctor Name</label>
@@ -23,8 +17,6 @@
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="row">
                 <div class="col-md-6">
                   <div class="form-group row">
                     <label class="col-sm-3 col-form-label">Patient Name</label>
@@ -33,6 +25,8 @@
                     </div>
                   </div>
                 </div>
+              </div>
+              <div class="row">
                 <div class="col-md-6">
                   <div class="form-group row">
                     <label class="col-sm-3 col-form-label">Contact</label>
@@ -41,8 +35,6 @@
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="row">
                 <div class="col-md-6">
                   <div class="form-group row">
                     <label class="col-sm-3 col-form-label">Age</label>
@@ -51,6 +43,8 @@
                     </div>
                   </div>
                 </div>
+              </div>
+              <div class="row">
                 <div class="col-md-6">
                   <div class="form-group row">
                     <label class="col-sm-3 col-form-label">Disease</label>
@@ -59,8 +53,6 @@
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="row">
                 <div class="col-md-6">
                   <div class="form-group row">
                     <label class="col-sm-3 col-form-label">Select Date</label>
@@ -69,11 +61,16 @@
                     </div>
                   </div>
                 </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  
+                </div>
                 <div class="col-md-6">
                   <div class="form-group row">
                     <label class="col-sm-8 col-form-label"></label>
                     <div class="col-sm-2">
-                      <button type="submit" class="btn btn-primary mr-2">Cancle</button>
+                      <!-- <button type="submit" class="btn btn-primary mr-2">Cancle</button> -->
                     </div>
                     <div class="col-sm-2">
                       <button type="submit" class="btn btn-primary mr-2">Submit</button>

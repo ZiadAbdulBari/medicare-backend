@@ -36,7 +36,7 @@ router.get('/medical-service', async (req,res)=>{
         service,
     });
 })
-router.get('/create-appointment', async (req,res)=>{
+router.get('/create-appointment/:id', async (req,res)=>{
     res.render('pages/create-appointment', {
         title: 'Create Appointment',
     });
