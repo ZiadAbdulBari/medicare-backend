@@ -1,5 +1,5 @@
-const Doctor = require("../models/doctor.model");
-const User = require("../models/user.model");
+const Doctor = require("../models/Doctor.model");
+const User = require("../models/User.model");
 const {doctorListValidation} = require('../helper/validation');
 
 const getAllDoctor = async (req,res)=>{

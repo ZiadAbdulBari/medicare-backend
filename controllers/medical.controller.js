@@ -1,4 +1,4 @@
-const MedicalService = require('../models/medical.model');
+const MedicalService = require('../models/Medical.model');
 const {medicalServiceValidation} = require('../helper/validation');
 
 const getMedicalService = async (req,res)=>{

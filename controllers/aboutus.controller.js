@@ -1,4 +1,4 @@
-const Feedback = require("../models/feedback.model");
+const Feedback = require("../models/Feedback.model");
 const {feedbackValidation} = require("../helper/validation");
 
 const getFeedback = async (req,res)=>{

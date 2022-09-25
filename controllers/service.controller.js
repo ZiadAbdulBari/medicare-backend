@@ -1,4 +1,4 @@
-const CoreService = require("../models/service.model");
+const CoreService = require("../models/Service.model");
 const {coreServiceValidation} = require('../helper/validation');
 
 const getAllCoreService = async (req,res)=>{

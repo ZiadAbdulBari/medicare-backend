@@ -1,5 +1,5 @@
-const Appointment = require("../models/appointment.model");
-const User = require("../models/user.model");
+const Appointment = require("../models/Appointment.model");
+const User = require("../models/User.model");
 const {createAppointmentValidation} = require('../helper/validation');
 
 const checkAvailability = async (req,res)=>{
