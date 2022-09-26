@@ -6,7 +6,7 @@ const adminTokenCheck = (req,res,next)=>{
         const token = String(authentication.access_token);
         const decode = jwt.verify(token,process.env.JWT_TOKEN);
         const {id,email,name} = decode;
-        console.log(email);
+        // console.log(email);
         req.id = id;
         req.email = email;
         req.name = name;
