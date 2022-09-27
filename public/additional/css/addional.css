@@ -10,3 +10,15 @@
 .basic-anchor{
     text-decoration: none;
 }
+.btn, .btn-primary{
+    border-radius: 5px!important;
+}
+.sidebar .nav .nav-item{
+    border-radius: 5px!important;
+}
+.sidebar .nav .nav-item:hover{
+    border-radius: 5px!important;
+}
+.card{
+    border-radius: 5px!important;
+}
