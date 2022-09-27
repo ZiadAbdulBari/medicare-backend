@@ -7,6 +7,21 @@
             <!-- <p class="card-description">
               Add class <code>.table-striped</code>
             </p> -->
+            <div class="d-flex justify-content-between filter mb-4">
+              <div class="select-doctor">
+                <select class="form-control" name="" id="">
+                  <option value="">Select Doctor</option>
+                  <option value=""></option>
+                  <option value=""></option>
+                </select>
+              </div>
+              <div class="select-date">
+                <input type="text" class="form-control" id="date" placeholder="Select Date">
+              </div>
+              <div class="find-btn">
+                <button class="btn btn-primary"> Find Result</button>
+              </div>
+            </div>
             <div class="table-responsive">
               <table class="table table-striped">
                 <thead>
@@ -70,3 +85,31 @@
     </div>
 </div>
 <%- include('../layouts/footer'); %>
+<script src="../../public/additional/js/mc-calendar.min.js"></script>
+<script>
+  const myDatePicker = MCDatepicker.create({
+    el: '#date',
+    bodyType: 'inline',
+    dateFormat: 'MMM-DD-YYYY',
+    customOkBTN: 'Cheack Schedule',
+  });
+  // myDatePicker.open()
+  // myDatePicker.onSelect((date, formatedDate) =>{
+  //   myDatePicker.open()
+  //   let url = window.location.origin+'/doctor/schedule-check/'+id;
+  //   let data = {date: date};
+  //   fetch(url, {
+  //     method: "POST",
+  //     headers: {'Content-Type': 'application/json'}, 
+  //     body: JSON.stringify(data)
+  //   }).then(response=>response.json())
+  //   .then(res => {
+  //     const showMgs = document.getElementById('mgs');
+  //     showMgs.innerHTML = ""
+  //     showMgs.innerHTML = res.mgs;
+  //     if(res.permission==true){
+  //       window.location.href = `/admin/appointment-form/${id}?date=${date.toLocaleDateString()}`;
+  //     }
+  //   });
+  // })
+</script>

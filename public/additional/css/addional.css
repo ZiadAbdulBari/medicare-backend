@@ -10,15 +10,24 @@
 .basic-anchor{
     text-decoration: none;
 }
-.btn, .btn-primary{
+.btn, .btn-primary, .btn-sm{
     border-radius: 5px!important;
 }
 .sidebar .nav .nav-item{
     border-radius: 5px!important;
 }
-.sidebar .nav .nav-item:hover{
+.sidebar .nav .nav-item :hover{
     border-radius: 5px!important;
 }
 .card{
     border-radius: 5px!important;
+}
+.filter{
+    width: 50%;
+}
+.select-doctor{
+    width: 40%;
+}
+.select-date{
+    width: 40%;
 }
