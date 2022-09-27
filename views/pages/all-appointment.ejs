@@ -9,17 +9,20 @@
             </p> -->
             <div class="d-flex justify-content-between filter mb-4">
               <div class="select-doctor">
-                <select class="form-control" name="" id="">
+                <select class="form-control" name="" id="doctorinfo">
                   <option value="">Select Doctor</option>
-                  <option value=""></option>
-                  <option value=""></option>
+                  <% if(doctorList.length>0) {%>
+                    <% doctorList.forEach((doctor,i)=>{ %>
+                      <option value="<%=doctor.id%>"><%= doctor.name %></option>
+                    <% }) %>
+                  <% } %>
                 </select>
               </div>
               <div class="select-date">
                 <input type="text" class="form-control" id="date" placeholder="Select Date">
               </div>
               <div class="find-btn">
-                <button class="btn btn-primary"> Find Result</button>
+                <button class="btn btn-primary" onclick="searchDoctor()">Find Result</button>
               </div>
             </div>
             <div class="table-responsive">
@@ -93,23 +96,12 @@
     dateFormat: 'MMM-DD-YYYY',
     customOkBTN: 'Cheack Schedule',
   });
-  // myDatePicker.open()
-  // myDatePicker.onSelect((date, formatedDate) =>{
-  //   myDatePicker.open()
-  //   let url = window.location.origin+'/doctor/schedule-check/'+id;
-  //   let data = {date: date};
-  //   fetch(url, {
-  //     method: "POST",
-  //     headers: {'Content-Type': 'application/json'}, 
-  //     body: JSON.stringify(data)
-  //   }).then(response=>response.json())
-  //   .then(res => {
-  //     const showMgs = document.getElementById('mgs');
-  //     showMgs.innerHTML = ""
-  //     showMgs.innerHTML = res.mgs;
-  //     if(res.permission==true){
-  //       window.location.href = `/admin/appointment-form/${id}?date=${date.toLocaleDateString()}`;
-  //     }
-  //   });
-  // })
+  function searchDoctor(){
+    let date = document.getElementById('date').value;
+    let doctor = document.getElementById('doctorinfo').value;
+    
+    let url = document.location.origin+`/admin/all-appointment/?doctor=${doctor}&date=${date}`;
+    window.location.href=url;
+    console.log(doctor);
+  }
 </script>

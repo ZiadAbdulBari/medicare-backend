@@ -110,10 +110,36 @@ router.get('/all-appointment', adminTokenCheck, async (req,res)=>{
         name:req.name,
         email:req.email
     }
-    const appointmentList = await Appointment.find();
+    let appointmentList;
+    if(req.query.doctor && req.query.date){
+        appointmentList = await Appointment.find({doctor_id:req.query.doctor,chosen_date:req.query.date});
+    }
+    else if(req.query.doctor && !req.query.date){
+        appointmentList = await Appointment.find({doctor_id:req.query.doctor});
+        // console.log(appointmentList);
+    }
+    else if(!req.query.doctor && req.query.date){
+        appointmentList = await Appointment.find({chosen_date:req.query.date});
+    }
+    else{
+        appointmentList = await Appointment.find();
+    }
+    let selectDoctors = await Appointment.find()
+    let doctorList=[];
+    for(let doctor of selectDoctors){
+        let checkDoctor = doctorList.filter(doc=>doc.id==doctor.doctor_id);
+        if(checkDoctor.length==0){
+            let doctorInfo={
+                id:doctor.doctor_id,
+                name:doctor.doctor_name
+            }
+            doctorList.push(doctorInfo);
+        }
+    }
     res.render('pages/all-appointment', {
         title: 'All Appointment',
         userData,
+        doctorList,
         appointmentList,
     });
 })
