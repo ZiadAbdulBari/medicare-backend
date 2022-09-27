@@ -7,3 +7,6 @@
 .mc-date--today{
     background-color: #a6a4f1!important;
 }
+.basic-anchor{
+    text-decoration: none;
+}

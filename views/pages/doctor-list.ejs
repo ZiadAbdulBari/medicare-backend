@@ -30,10 +30,10 @@
                       Work At
                     </th>
                     <th>
-                      Available
+                      Schedule
                     </th>
                     <th>
-                      Activetion Status
+                      Activation Status
                     </th>
                     <th>
                       Appointment
@@ -63,7 +63,9 @@
                         <td>
                           <i class="mdi mdi-arrow-down-drop-circle-outline"></i>
                           <button type="button" class="btn btn-sm" onclick="show_schdeul(event,'<%=JSON.stringify(doc.available)%>','<%=i+1%>')">
-                            Check Availability
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#4B49AC" class="bi bi-arrow-down-circle-fill" viewBox="0 0 16 16">
+                              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z"/>
+                            </svg>
                           </button>
                         </td>
                         <td>
@@ -81,7 +83,7 @@
                           </div>
                         </td>
                         <td>
-                          <a href="/admin/create-appointment/<%=doc._id%>">Appointment</a>
+                          <a class="basic-anchor" href="/admin/create-appointment/<%=doc._id%>">Appointment</a>
                         </td>
                       </tr>
                     <% }) %>
@@ -103,9 +105,6 @@
 <script>
   let flag = true;
   const changeStatus= (status,id)=>{
-    // const doctorStatus = Boolean(status);
-    // console.log(status);
-    // return;
     let data;
     if(status==true || status=='true'){
       data = {
@@ -117,7 +116,6 @@
         is_activeted:true
       }
     }
-    // console.log(data);
     
       let url = window.location.origin+'/user/edit-status/'+id;
       fetch(url, {
@@ -125,10 +123,8 @@
           headers: {'Content-Type': 'application/json'}, 
           body: JSON.stringify(data)
       }).then(res => {
-      // console.log(res);
         console.log(res);
       });
-      // console.log(status,id);
   }
   function show_schdeul(e,time,postion){
     let table = document.getElementById('data-table');
@@ -141,17 +137,17 @@
         console.log(data);
         if(data.day){
           rowData+=`
-          <div class="d-flex justify-content-between">
-            <div>
+          <div class="d-flex justify-content-between" style="width:100%">
+            <div style="width:25%">
               <p style="font-size:18px;">${data.day}</p>
             </div>
-            <div>
+            <div style="width:25%">
               <p style="font-size:18px;">${data.hospital}</p>
             </div>
-            <div>
+            <div style="width:25%">
               <p style="font-size:18px;">${data.time}</p>
             </div>
-            <div>
+            <div style="width:25%">
               <p style="font-size:18px;">${data.patient_cheack}</p>
             </div>
           </div>
