@@ -112,14 +112,14 @@ router.get('/all-appointment', adminTokenCheck, async (req,res)=>{
     }
     let appointmentList;
     if(req.query.doctor && req.query.date){
-        appointmentList = await Appointment.find({doctor_id:req.query.doctor,chosen_date:req.query.date});
+        appointmentList = await Appointment.find({doctor_id:req.query.doctor,chosen_date:req.query.date}).sort({creation_date:-1});
     }
     else if(req.query.doctor && !req.query.date){
-        appointmentList = await Appointment.find({doctor_id:req.query.doctor});
+        appointmentList = await Appointment.find({doctor_id:req.query.doctor}).sort({creation_date:-1});
         // console.log(appointmentList);
     }
     else if(!req.query.doctor && req.query.date){
-        appointmentList = await Appointment.find({chosen_date:req.query.date});
+        appointmentList = await Appointment.find({chosen_date:req.query.date}).sort({creation_date:-1});
     }
     else{
         appointmentList = await Appointment.find();
