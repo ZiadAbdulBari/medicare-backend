@@ -70,11 +70,11 @@
                           <div class="form-check">
                             <label class="form-check-label">
                               <% if(doc.is_activeted===true){ %>
-                                <input type="checkbox" name="is_activeted" class="form-check-input" onchange="changeStatus('<%=JSON.stringify(doc.is_activeted) %>','<%=doc._id%>')" checked>
+                                <input type="checkbox" name="is_activeted" class="form-check-input" onchange="changeStatus('<%=doc.is_activeted %>','<%=doc._id%>')" checked>
                                 <i class="input-helper"></i>
                               <% } %>
                               <% if(doc.is_activeted===false){ %>
-                                <input type="checkbox" name="is_activeted" class="form-check-input" onchange="changeStatus('<%=JSON.stringify(doc.is_activeted) %>','<%=doc._id%>')">
+                                <input type="checkbox" name="is_activeted" class="form-check-input" onchange="changeStatus('<%=doc.is_activeted %>','<%=doc._id%>')">
                                 <i class="input-helper"></i>
                               <% } %>
                             </label>
@@ -93,18 +93,26 @@
         </div>
     </div>
 </div>
+<div class="d-flex">
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+</div>
 <%- include('../layouts/footer'); %>
 <script>
   let flag = true;
   const changeStatus= (status,id)=>{
     // const doctorStatus = Boolean(status);
+    // console.log(status);
+    // return;
     let data;
-    if(JSON.parse(status)==true || JSON.parse(status)=='true'){
+    if(status==true || status=='true'){
       data = {
         is_activeted:false
       }
     }
-    if(JSON.parse(status)==false || JSON.parse(status)=='false'){
+    if(status==false || status=='false'){
       data = {
         is_activeted:true
       }
@@ -115,7 +123,7 @@
       fetch(url, {
           method: "POST",
           headers: {'Content-Type': 'application/json'}, 
-          body: JSON.parse(data)
+          body: JSON.stringify(data)
       }).then(res => {
       // console.log(res);
         console.log(res);
@@ -126,19 +134,31 @@
     let table = document.getElementById('data-table');
     if(flag==true){
       let row = table.insertRow(parseInt(postion)+1);
+      let cell = row.insertCell(0);
+      cell.colSpan = "8";
       let rowData='';
       for(let data of JSON.parse(time)){
         console.log(data);
         if(data.day){
           rowData+=`
-            <td>${data.day}</td>
-            <td>${data.hospital}</td>
-            <td>${data.time}</td>
-            <td>${data.patient_cheack}</td> 
+          <div class="d-flex justify-content-between">
+            <div>
+              <p style="font-size:18px;">${data.day}</p>
+            </div>
+            <div>
+              <p style="font-size:18px;">${data.hospital}</p>
+            </div>
+            <div>
+              <p style="font-size:18px;">${data.time}</p>
+            </div>
+            <div>
+              <p style="font-size:18px;">${data.patient_cheack}</p>
+            </div>
+          </div>
           `
         }
       }
-      row.innerHTML = rowData;
+      cell.innerHTML = rowData;
       flag=false;
       return;
     }
