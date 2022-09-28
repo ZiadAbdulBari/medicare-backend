@@ -9,6 +9,14 @@
 }
 .basic-anchor{
     text-decoration: none;
+    padding: 10px 10px;
+    background-color: #4B49AC;
+    color: white;
+    border-radius: 5px;
+}
+.basic-anchor:hover{
+    text-decoration: none;
+    color: white;
 }
 .btn, .btn-primary, .btn-sm{
     border-radius: 5px!important;
