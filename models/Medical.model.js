@@ -1,15 +1,15 @@
 const mongoose = require('mongoose');
 
-const doctorList = new mongoose.Schema({
-    doctor_name:{
+const medicalService = new mongoose.Schema({
+    video_link:{
         type:String,
         required:true,
     },
-    image:{
+    title:{
         type:String,
-        required:false,
+        required:true,
     },
-    specialished_on:{
+    subtitle:{
         type:String,
         required:true,
     },
@@ -19,4 +19,4 @@ const doctorList = new mongoose.Schema({
     },
 })
 
-module.exports = new mongoose.model('Doctors',doctorList);
+module.exports = new mongoose.model('MedicalService',medicalService);

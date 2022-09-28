@@ -1,15 +1,11 @@
 const mongoose = require('mongoose');
 
-const testionial = new mongoose.Schema({
+const customerQuery = new mongoose.Schema({
     used_name:{
         type:String,
         required:true,
     },
-    title:{
-        type:String,
-        required:false,
-    },
-    feedback:{
+    email:{
         type:String,
         required:true,
     },
@@ -17,9 +13,6 @@ const testionial = new mongoose.Schema({
         type:String,
         required:true,
     },
-    created_on:{
-        type:Date,
-    }
 })
 
-module.exports = new mongoose.model('Testionial',testionial);
+module.exports = new mongoose.model('Query',customerQuery);

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
-const coreService = new mongoose.Schema({
-    service_name:{
+const doctorList = new mongoose.Schema({
+    doctor_name:{
         type:String,
         required:true,
     },
@@ -9,7 +9,7 @@ const coreService = new mongoose.Schema({
         type:String,
         required:false,
     },
-    title:{
+    specialished_on:{
         type:String,
         required:true,
     },
@@ -17,10 +17,6 @@ const coreService = new mongoose.Schema({
         type:String,
         required:true,
     },
-    number_of_doctor:{
-        type:Number,
-        required:true,
-    },
 })
 
-module.exports = new mongoose.model('CoreService',coreService);
+module.exports = new mongoose.model('Doctors',doctorList);
