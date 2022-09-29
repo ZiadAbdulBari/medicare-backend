@@ -60,6 +60,7 @@ const createdAppointment = async(req, res)=>{
         user_name: req.body.user_name,
         doctor_name: req.body.doctor_name,
         doctor_id: req.body.doctor_id,
+        specialished_on: req.body.specialished_on,
         patient_name: req.body.patient_name,
         patient_id: req.body.patient_id,
         contact: req.body.contact,

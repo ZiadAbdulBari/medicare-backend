@@ -25,9 +25,8 @@ router.get('/home',adminTokenCheck, async (req,res)=>{
     const inactiveDoctor = await User.find({role:'doctor',is_activeted:false});
     const totalDoctor = await User.find({role:'doctor',is_activeted:true});
     const appointment = await Appointment.find({chosen_date:new Date});
-    // console.log(appointment.length);
     res.render('pages/index', {
-        title: 'Home',
+        title: 'Dashboard',
         userData,
         inactiveDoctor,
         totalDoctor,

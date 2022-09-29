@@ -13,6 +13,10 @@ const appointment = new mongooes.Schema({
         type:String,
         required:true
     },
+    specialished_on:{
+        type:String,
+        required:true,
+    },
     patient_name:{
         type:String,
         required:true

@@ -10,7 +10,7 @@ const userRouter = require('./routers/user.router');
 const appointmentRouter = require('./routers/appointment.router');
 const aboutus = require('./routers/aboutus.router');
 const adminPannel = require('./controllers/admin.comtroller');
-
+const adminDashboard = require('./routers/adminDashboard.router');
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -23,6 +23,7 @@ app.use('/home/',adminRouter);
 app.use('/user/',userRouter);
 app.use('/doctor/',appointmentRouter);
 app.use('/aboutus/', aboutus);
+app.use('/admin/dashboard/',adminDashboard);
 
 //404 page
 app.use(function(req, res, next){
