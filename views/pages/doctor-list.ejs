@@ -95,6 +95,7 @@
 <%- include('../layouts/footer'); %>
 <script>
   let flag = true;
+  let previous_row=-1;
   const changeStatus= (status,id)=>{
     let data;
     if(status==true || status=='true'){
@@ -119,13 +120,17 @@
   }
   function show_schdeul(e,time,postion){
     let table = document.getElementById('data-table');
+    if(previous_row!=-1 && previous_row!=parseInt(postion)+1){
+      table.deleteRow(parseInt(previous_row));
+      flag=true;
+    }
     if(flag==true){
+      previous_row=parseInt(postion)+1;
       let row = table.insertRow(parseInt(postion)+1);
       let cell = row.insertCell(0);
       cell.colSpan = "8";
       let rowData='';
       for(let data of JSON.parse(time)){
-        console.log(data);
         if(data.day){
           rowData+=`
           <div class="d-flex justify-content-center" style="width:100%">
@@ -151,6 +156,7 @@
     }
     if(flag==false){
       table.deleteRow(parseInt(postion)+1);
+      previous_row=-1;
       flag=true;
       return;
     }
