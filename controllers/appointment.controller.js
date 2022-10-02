@@ -135,8 +135,31 @@ const changeAppointmentStatus = async(req,res)=>{
         })
     }
 }
+const patientCall = async(req,res)=>{
+    try{
+        const doctorId = req.params.doctorId;
+        const patientId = req.query.patient_id;
+        const status = req.body.status;
+        const date  =new Date;
+        const specificPatient = await Appointment.findOne({doctor_id:doctorId,patient_id:patientId,chosen_date:date.toLocaleDateString()});
+        // console.log(specificPatient);
+        // return;
+        specificPatient.status = status;
+        await specificPatient.save();
+        res.status(200).json({
+            "mgs":"status changed",
+            specificPatient
+        })
+    }
+    catch(error){
+        res.status(500).json({
+            'mgs':'server error'
+        })
+    }
+}
 module.exports.checkAvailability = checkAvailability;
 module.exports.createdAppointment = createdAppointment;
 module.exports.getAppointmentList = getAppointmentList;
 module.exports.patientHistory = patientHistory;
 module.exports.changeAppointmentStatus = changeAppointmentStatus;
+module.exports.patientCall = patientCall;
