@@ -316,9 +316,8 @@ const userLogin = async (req,res)=>{
     try{
         const email = req.body.email;
         const checkEmail = await User.find({email:email});
-        // console.log(checkEmail);
         if(checkEmail.length>0){
-            const checkPassword = bcrypt.compare(req.body.password, checkEmail[0].password);
+            const checkPassword = await bcrypt.compare(req.body.password, checkEmail[0].password);
             if(checkPassword){
                 const token = jwt.sign({ id: checkEmail[0]._id, email: checkEmail[0].email, role:  checkEmail[0].role }, process.env.JWT_TOKEN);
                 res.status(200).json({
@@ -327,7 +326,11 @@ const userLogin = async (req,res)=>{
                     checkEmail,
                 })
             }
-            
+            else{
+                res.status(401).json({
+                    "mgs": "Failed",
+                })
+            }
         }
         else{
             res.status(401).json({

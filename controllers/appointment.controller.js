@@ -157,9 +157,26 @@ const patientCall = async(req,res)=>{
         })
     }
 }
+const liveUpdate = async(req,res)=>{
+    try{
+        const doctorId = req.params.id;
+        const date = new Date;
+        const allpatients = await Appointment.find({doctor_id:doctorId,chosen_date:date.toLocaleDateString()});
+        // console.log(allpatients);
+        res.status(200).json({
+            allpatients
+        })
+    }
+    catch(error){
+        res.status(500).json({
+            "mgs":"server problem"
+        })
+    }
+}
 module.exports.checkAvailability = checkAvailability;
 module.exports.createdAppointment = createdAppointment;
 module.exports.getAppointmentList = getAppointmentList;
 module.exports.patientHistory = patientHistory;
 module.exports.changeAppointmentStatus = changeAppointmentStatus;
 module.exports.patientCall = patientCall;
+module.exports.liveUpdate = liveUpdate;
