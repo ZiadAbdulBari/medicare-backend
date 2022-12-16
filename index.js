@@ -19,11 +19,11 @@ app.use(cookieParser());
 app.set('view engine', 'ejs');
 app.use('/public', express.static('public'));
 app.use('/admin',adminPannel);
-app.use('/home/',adminRouter);
-app.use('/user/',userRouter);
-app.use('/doctor/',appointmentRouter);
-app.use('/aboutus/', aboutus);
-app.use('/admin/dashboard/',adminDashboard);
+app.use('/home',adminRouter);
+app.use('/user',userRouter);
+app.use('/doctor',appointmentRouter);
+app.use('/aboutus', aboutus);
+app.use('/admin/dashboard',adminDashboard);
 
 //404 page
 app.use(function(req, res, next){
