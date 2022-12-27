@@ -92,6 +92,7 @@
   let currentDate = $('#calendar').evoCalendar('getActiveDate');
   $('#calendar').on('selectDate', function(event, newDate, oldDate) {
     let selectedDate = $('#calendar').evoCalendar('getActiveDate');
+    console.log(selectedDate)
     const x = new Date(currentDate);
     const y = new Date(selectedDate);
     let apiurl = window.location.origin+'/doctor/schedule-check/'+id;
@@ -103,14 +104,14 @@
       body: JSON.stringify(data)
     }).then(response=>response.json())
     .then(res => {
-      // console.log(res);
+      console.log(res);
       if(x<=y){
         initialize();
         showMgs = document.querySelectorAll('.event-empty');
         showMgs[0].innerHTML = ""
         showMgs[0].innerHTML = res.mgs;
         if(res.permission==true){
-          window.location.href = `/admin/appointment-form/${id}?date=${date.toLocaleDateString()}`;
+          window.location.href = `/admin/appointment-form/${id}?date=${selectedDate}`;
         }
       }
       else{
