@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 require('dotenv').config();
 const adminRouter = require('./routers/home.router');
+const doctor = require('./routers/doctor.router');
 const userRouter = require('./routers/user.router');
 const appointmentRouter = require('./routers/appointment.router');
 const aboutus = require('./routers/aboutus.router');
@@ -24,6 +25,7 @@ app.use('/user/',userRouter);
 app.use('/doctor/',appointmentRouter);
 app.use('/aboutus/', aboutus);
 app.use('/admin/dashboard/',adminDashboard);
+app.use('/admin/doctor/',doctor);
 
 //404 page
 app.use(function(req, res, next){

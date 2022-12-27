@@ -1,12 +1,14 @@
 <%- include('../layouts/header'); %>
 <div class="card">
   <div class="card-body">
-    <h4 class="text-center mb-0" id="mgs"></h4>
+    <!-- <h4 class="text-center mb-0" id="mgs"></h4> -->
+    <div id="calendar" style="height: 650px;"></div>
   </div>
 </div>
 
 <%- include('../layouts/footer'); %>
-<script src="../../public/additional/js/mc-calendar.min.js"></script>
+<script src="../../public/additional/js/evo-calendar.js"></script>
+<!-- <script src="../../public/additional/js/mc-calendar.min.js"></script>
 <script>
   let url = window.location.href;
   let id = url.split('/')[url.split('/').length-1];
@@ -35,4 +37,86 @@
         }
       });
     })
+</script> -->
+<script>
+  let url = window.location.href;
+  let id = url.split('/')[url.split('/').length-1];
+  $('#calendar').evoCalendar({
+    'language': 'en',
+    'theme': 'Royal Navy',
+    'todayHighlight': true,
+  });
+  let showMgs = document.querySelectorAll('.event-empty');
+  showMgs[0].innerHTML=''
+  let initialize = ()=>{
+    let createTable = document.querySelector('.event-list');
+    let createDivForDoctorTime = document.createElement('div');
+    createDivForDoctorTime.setAttribute('id','doctor-time')
+    createTable.append(createDivForDoctorTime);
+    createTable.insertBefore(createDivForDoctorTime, createTable.firstChild);
+    let doctorTime='';
+    let timeurl = '/admin/doctor/doctor-time/'+id;
+    fetch(timeurl)
+    .then(res=> res.json())
+    .then(data=>{
+      doctorTime = data.data;
+      let tableRow = '';
+      for(let i of doctorTime){
+        tableRow+=`
+          <tr>
+            <td>${i.day}</td>
+            <td>${i.time}</td>
+            <td>${i.hospital}</td>
+          </tr>
+        `
+      }
+      let table = document.getElementById('doctor-time');
+      table.innerHTML =`
+        <table class="table" style="color:#fff">
+          <thead>
+            <tr>
+              <th scope="col">Day</th>
+              <th scope="col">Time</th>
+              <th scope="col">Place</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${tableRow}
+          </tbody>
+        </table>
+      `
+    })
+    
+  }
+  initialize();
+  let currentDate = $('#calendar').evoCalendar('getActiveDate');
+  $('#calendar').on('selectDate', function(event, newDate, oldDate) {
+    let selectedDate = $('#calendar').evoCalendar('getActiveDate');
+    const x = new Date(currentDate);
+    const y = new Date(selectedDate);
+    let apiurl = window.location.origin+'/doctor/schedule-check/'+id;
+    console.log(apiurl);
+    let data = {date: selectedDate};
+    fetch(apiurl, {
+      method: "POST",
+      headers: {'Content-Type': 'application/json'}, 
+      body: JSON.stringify(data)
+    }).then(response=>response.json())
+    .then(res => {
+      // console.log(res);
+      if(x<=y){
+        initialize();
+        showMgs = document.querySelectorAll('.event-empty');
+        showMgs[0].innerHTML = ""
+        showMgs[0].innerHTML = res.mgs;
+        if(res.permission==true){
+          window.location.href = `/admin/appointment-form/${id}?date=${date.toLocaleDateString()}`;
+        }
+      }
+      else{
+        console.log(false);
+      }
+    });
+
+});
 </script>

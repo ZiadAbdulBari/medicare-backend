@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const adminTokenCheck = require('../middleware/admin-token-check');
+const permission = require('../middleware/permission');
 const User = require('../models/User.model')
 const CoreService = require("../models/Service.model");
 const MedicalService = require("../models/Medical.model");
@@ -11,9 +12,15 @@ router.get('/login', async (req,res)=>{
         title: 'Login',
     });
 })
-router.get('/registration', async (req,res)=>{
+router.get('/registration',adminTokenCheck,permission, async (req,res)=>{
+    const userData = {
+        id:req.id,
+        name:req.name,
+        email:req.email
+    }
     res.render('pages/registration', {
-        title: 'Login',
+        title: 'Add Admin',
+        userData
     });
 })
 router.get('/home',adminTokenCheck, async (req,res)=>{
@@ -33,7 +40,7 @@ router.get('/home',adminTokenCheck, async (req,res)=>{
         appointment,
     });
 })
-router.get('/add-doctor', adminTokenCheck, async (req,res)=>{
+router.get('/add-doctor', adminTokenCheck,async (req,res)=>{
     const userData = {
         id:req.id,
         name:req.name,

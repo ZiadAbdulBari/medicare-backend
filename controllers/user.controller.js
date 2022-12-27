@@ -109,10 +109,10 @@ const userRegistration = async (req, res)=>{
 }
 const editUserProfile = async (req, res)=>{
     // const password = await bcrypt.hash(req.body.password, 10);
-    console.log(req.headers.origin);
+    // console.log(req.headers.origin);
     // return;
     if(req.method !== 'POST'){
-        return res.status(405).json({
+        res.status(405).json({
             'status':'405',
             "mgs":"method not allowed"
         })
@@ -188,14 +188,14 @@ const editUserProfile = async (req, res)=>{
             userData.age = req.body.age;
         }
         await userData.save();
-        return res.status(200).json({
+        res.status(200).json({
             "status":200,
             "mgs":"successfully updated",
             userData
         })
     }
     catch(error){
-        return res.status(500).json({
+        res.status(500).json({
             "status":500,
             "mgs":"server error",
         })

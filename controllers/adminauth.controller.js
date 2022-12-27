@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 const adminRegistration = async (req,res) => {
     const checkEmail = await Adminauth.find({email:req.body.email});
     if(checkEmail.length>0){
-        res.status(401)
+        res.status(401);
         res.redirect('/admin/registration');
     }
     const hashPassword = await bcrypt.hash(req.body.password,10);
@@ -14,7 +14,7 @@ const adminRegistration = async (req,res) => {
             name: req.body.name,
             email: req.body.email,
             password: hashPassword,
-            role: "",
+            role: "Guest",
         })
         await newAdmin.save();
         res.status(200);
@@ -36,7 +36,7 @@ const adminLogin = async (req,res) =>{
         }
         const checkPassword = await bcrypt.compare(req.body.password, checkEmail[0].password);
         if(checkPassword){
-            const token = await jwt.sign({ id: checkEmail[0]._id, email: checkEmail[0].email,name: checkEmail[0].name }, process.env.JWT_TOKEN);
+            const token = await jwt.sign({ id: checkEmail[0]._id, email: checkEmail[0].email,name: checkEmail[0].name,role: checkEmail[0].role }, process.env.JWT_TOKEN);
             // console.log(token);
             res.cookie("access_token", token, { httpOnly: true })
             // res.status(200)
