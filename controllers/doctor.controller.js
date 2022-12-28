@@ -140,7 +140,7 @@ const getSchdeul = async (req,res)=>{
     }
     try{
         let schdiul = await User.find({_id:req.params.id});
-        let data = schdiul[0].available.filter(day=>day.day!='');
+        let data = schdiul[0].available.filter(day=>day.day && day.day!='');
         // console.log(data);
         res.status(200).json({
             data
