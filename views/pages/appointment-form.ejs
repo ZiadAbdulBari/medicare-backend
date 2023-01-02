@@ -4,7 +4,7 @@
         <div class="card">
           <div class="card-body">
             <h4 class="card-title">Appointment</h4>
-            <form class="form-sample" action="/doctor/appointment" method="POST" >
+            <form class="form-sample" action="/admin/appointment/make-appointment" method="POST" >
               <input type="text" name="user_name" class="form-control" placeholder="Your name" value="None" hidden/>
               <input type="text" name="patient_id" class="form-control" placeholder="Your name" value="None" hidden/>
               <div class="row">
@@ -14,6 +14,7 @@
                     <div class="col-sm-9">
                       <input type="text" name="doctor_name" class="form-control" value="<%=doctor.name%>" readonly/>
                       <input type="text" name="doctor_id" value="<%=doctor._id%>" hidden>
+                      <input type="text" name="specialished_on" value="<%=doctor.speacialist_on%>" hidden>
                     </div>
                   </div>
                 </div>
@@ -39,7 +40,7 @@
                   <div class="form-group row">
                     <label class="col-sm-3 col-form-label">Age</label>
                     <div class="col-sm-9">
-                      <input type="text" name="age" class="form-control" placeholder="Patient age"/>
+                      <input type="number" name="age" class="form-control" placeholder="Patient age"/>
                     </div>
                   </div>
                 </div>

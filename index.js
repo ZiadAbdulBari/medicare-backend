@@ -5,13 +5,16 @@ const app = express();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 require('dotenv').config();
-const adminRouter = require('./routers/home.router');
-const doctor = require('./routers/doctor.router');
+const adminauth = require('./routers/admin/adminauth.router');
+const adminDashboard = require('./routers/admin/adminDashboard.router');
+const clienthome = require('./routers/admin/clienthome.router');
+const doctor = require('./routers/admin/doctor.router');
+const appointment = require('./routers/admin/appointment.router');
+
 const userRouter = require('./routers/user.router');
 const appointmentRouter = require('./routers/appointment.router');
 const aboutus = require('./routers/aboutus.router');
 const adminPannel = require('./controllers/admin.comtroller');
-const adminDashboard = require('./routers/adminDashboard.router');
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -19,13 +22,17 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.set('view engine', 'ejs');
 app.use('/public', express.static('public'));
-app.use('/admin',adminPannel);
-app.use('/home/',adminRouter);
+//admin panel route
+app.use('/admin', adminPannel);
+app.use('/admin/adminauth/', adminauth);
+app.use('/admin/dashboard/',adminDashboard);
+app.use('/admin/clienthome', clienthome);
+app.use('/admin/doctor/', doctor);
+app.use('/admin/appointment',appointment);
+
 app.use('/user/',userRouter);
 app.use('/doctor/',appointmentRouter);
 app.use('/aboutus/', aboutus);
-app.use('/admin/dashboard/',adminDashboard);
-app.use('/admin/doctor/',doctor);
 
 //404 page
 app.use(function(req, res, next){

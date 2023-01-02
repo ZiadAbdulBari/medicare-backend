@@ -76,7 +76,6 @@ const createdAppointment = async(req, res)=>{
         res.status(200).json({
             "status": 200,
             "mgs":"created",
-            "data":appointment
         })
     }
     catch(error){
@@ -84,6 +83,37 @@ const createdAppointment = async(req, res)=>{
             "status": 500,
             "mgs":error,
         })
+    }
+}
+const creatAppointmentByAdmin = async(req, res)=>{
+    const {error} = createAppointmentValidation(req.body);
+    if(error){
+        res.status(400).json({
+            'mgs':error,
+        })
+    }
+    const appointment = new Appointment({
+        user_name: req.body.user_name,
+        doctor_name: req.body.doctor_name,
+        doctor_id: req.body.doctor_id,
+        specialished_on: req.body.specialished_on,
+        patient_name: req.body.patient_name,
+        patient_id: req.body.patient_id,
+        contact: req.body.contact,
+        age: req.body.age,
+        disease: req.body.disease,
+        status:'Pandding',
+        chosen_date: req.body.chosen_date,
+    })
+
+    try{
+        // console.log(appointment);
+        await appointment.save();
+        res.status(200).redirect('/admin/all-appointment');
+    }
+    catch(error){
+        console.log(error);
+        res.status(500).redirect(`admin/appointment-form/${req.body.doctor_id}?date=${req.body.chosen_date}`);
     }
 }
 const getAppointmentList = async(req,res)=>{
@@ -175,6 +205,7 @@ const liveUpdate = async(req,res)=>{
 }
 module.exports.checkAvailability = checkAvailability;
 module.exports.createdAppointment = createdAppointment;
+module.exports.creatAppointmentByAdmin = creatAppointmentByAdmin;
 module.exports.getAppointmentList = getAppointmentList;
 module.exports.patientHistory = patientHistory;
 module.exports.changeAppointmentStatus = changeAppointmentStatus;

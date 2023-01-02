@@ -109,6 +109,7 @@ router.get('/appointment-form/:id', adminTokenCheck, async (req,res)=>{
         email:req.email
     }
     const doctor = await User.findOne({_id: req.params.id});
+    // console.log(doctor);
     const date  = req.query.date;
     res.render('pages/appointment-form', {
         title: 'Create Appointment',

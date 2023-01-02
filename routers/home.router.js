@@ -6,7 +6,6 @@ const permission = require('../middleware/permission');
 const {editMedicalService, getMedicalService} = require('../controllers/medical.controller');
 const {getAllCoreService, createCoreService,updateCoreService , deleteCoreService} = require('../controllers/service.controller');
 const {getAllDoctor,createDoctor,updateDoctor , deleteDoctor} = require('../controllers/doctor.controller');
-const { adminRegistration, adminLogin, adminLogout } = require('../controllers/adminauth.controller');
 
 
 router.get('/medical-service/', getMedicalService);
@@ -21,10 +20,6 @@ router.get('/all-doctor/:role', getAllDoctor);
 // router.post('/add/doctor', createDoctor);
 // router.post('/update/doctor/:id', updateDoctor);
 // router.delete('/delete/doctor/:id', deleteDoctor);
-
-router.post('/admin-reg', adminRegistration);
-router.post('/admin-login', adminLogin);
-router.get('/admin-logout', adminTokenCheck, adminLogout);
 
 
 module.exports = router;
