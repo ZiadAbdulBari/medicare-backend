@@ -1,6 +1,8 @@
 const BannerContent = require("../models/Banner.model");
 const CoreService = require("../models/Service.model");
 const MedicalService = require('../models/Medical.model');
+const fs = require('fs');
+const { send } = require("process");
 const addBanner = async(req,res)=>{
     const banner = new BannerContent({
         image: `${process.env.BASE_URL}${req.file.destination.slice(1)}/${req.file.filename}`,
@@ -49,6 +51,15 @@ const editCoreService = async (req,res)=>{
     //     return res.redirect('/');
     // }
     const service = await  CoreService.findOne({_id:req.body.id});
+    let img = service.image.split('/');
+    let directoryPath = './public/upload/';
+    let fileName = img[img.length-1];
+    fs.unlink(directoryPath + fileName, (err) => {
+        if (err) {
+            // throw err;
+            console.log(err);
+        }
+    });
     if(req.file){
         service.image = `${process.env.BASE_URL}${req.file.destination.slice(1)}/${req.file.filename}`;
     }
@@ -59,25 +70,25 @@ const editCoreService = async (req,res)=>{
     
     try{
         await service.save();
-        res.status(200)
-        // .json({
-        //     "status":200,
-        //     "mgs":"Successfully updated",
-        // })
-        res.redirect('/admin/core-service');
+        res.status(200).redirect('/admin/core-service');
     }
     catch(error){
         console.log(error);
-        res.status(500)
-        // .json({
-        //     "status":500,
-        //     "mgs":"server error",
-        // })
-        res.redirect(`/admin/edit-core-service/${req.body.id}`);
+        res.status(500).redirect(`/admin/edit-core-service/${req.body.id}`);
     }
 }
 const deleteCoreService = async (req,res)=>{
     try{
+        const coreService = await CoreService.findOne({_id:req.body.id});
+        let img = coreService.image.split('/');
+        let directoryPath = './public/upload/';
+        let fileName = img[img.length-1];
+        fs.unlink(directoryPath + fileName, (err) => {
+            if (err) {
+                // throw err;
+                console.log(err);
+            }
+        });
         await CoreService.deleteOne({_id:req.body.id});
         res.status(200).redirect('/admin/core-service');
     }

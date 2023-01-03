@@ -5,7 +5,7 @@ const Doctor = require('../models/User.model');
 const getBannerApi = async (req,res)=>{
     try{
         const allBanner = await Banner.find();
-        res.status(200).json(allBanner);
+        res.status(200).json({allBanner});
     }
     catch(error){
         res.status(500);
