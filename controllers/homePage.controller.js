@@ -14,7 +14,7 @@ const getBannerApi = async (req,res)=>{
 const getCoreServiceApi = async (req,res)=>{
     try{
         const coreService = await Service.find();
-        res.status(200).json(coreService);
+        res.status(200).json({coreService});
     }
     catch(error){
         res.status(500);
@@ -23,7 +23,7 @@ const getCoreServiceApi = async (req,res)=>{
 const getMedicalServiceApi = async (req,res)=>{
     try{
         const medicalService = await MedicalService.find();
-        res.status(200).json(medicalService);
+        res.status(200).json({medicalService:medicalService[0]});
     }
     catch(error){
         res.status(500);
@@ -33,7 +33,7 @@ const getDoctorApi = async (req,res)=>{
     try{
         const doctor = await Doctor.find({role:'doctor'}).limit(4);
         console.log(doctor)
-        res.status(200).json(doctor);
+        res.status(200).json({doctor});
     }
     catch(error){
         res.status(500);
