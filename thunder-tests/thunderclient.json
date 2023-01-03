@@ -1,1 +1,96 @@
-[]
+[
+  {
+    "_id": "383d4df6-bd65-467b-9baf-3c98a581f617",
+    "colId": "ee687fbb-74db-464c-bc16-508d3fd0598e",
+    "containerId": "",
+    "name": "user registration",
+    "url": "{{url}}api/user/registration",
+    "method": "POST",
+    "sortNum": 10000,
+    "created": "2023-01-02T11:30:41.135Z",
+    "modified": "2023-01-02T12:02:09.556Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"name\": \"Sakib Islam\",\n  \"email\": \"sakib@gmail.com\",\n  \"password\": \"123\",\n  \"profile_img\": \"\",\n  \"contact\": \"01515216650\",\n  \"address\": \"Barisal\",\n  \"age\": \"16\",\n  \"role\": \"patient\",\n  \"is_activeted\": true\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "a9505390-17b2-43ed-b4ae-09804ad6ecbb",
+    "colId": "ee687fbb-74db-464c-bc16-508d3fd0598e",
+    "containerId": "",
+    "name": "user login",
+    "url": "{{url}}api/user/login",
+    "method": "POST",
+    "sortNum": 20000,
+    "created": "2023-01-02T12:03:23.905Z",
+    "modified": "2023-01-02T12:12:25.421Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"email\":\"sakib@gmail.com\",\n  \"password\":\"123\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "227a6f27-00c5-4752-a388-f597d4f027d4",
+    "colId": "ee687fbb-74db-464c-bc16-508d3fd0598e",
+    "containerId": "",
+    "name": "banner",
+    "url": "{{url}}/homepage/banner",
+    "method": "GET",
+    "sortNum": 30000,
+    "created": "2023-01-03T06:39:37.160Z",
+    "modified": "2023-01-03T06:41:15.202Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "6d938922-070a-4edb-97ea-858078bbf7d4",
+    "colId": "ee687fbb-74db-464c-bc16-508d3fd0598e",
+    "containerId": "",
+    "name": "core service",
+    "url": "{{url}}/homepage/core-service",
+    "method": "GET",
+    "sortNum": 40000,
+    "created": "2023-01-03T06:42:16.991Z",
+    "modified": "2023-01-03T06:42:26.967Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "6f1a2445-8f71-4b12-a3cc-9842fd21e6bf",
+    "colId": "ee687fbb-74db-464c-bc16-508d3fd0598e",
+    "containerId": "",
+    "name": "medical service",
+    "url": "{{url}}/homepage/banner",
+    "method": "GET",
+    "sortNum": 50000,
+    "created": "2023-01-03T06:42:46.046Z",
+    "modified": "2023-01-03T06:42:49.948Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "b9f64334-c169-4589-99bf-5137d421eebc",
+    "colId": "ee687fbb-74db-464c-bc16-508d3fd0598e",
+    "containerId": "",
+    "name": "home page doctor",
+    "url": "{{url}}/homepage/doctor",
+    "method": "GET",
+    "sortNum": 60000,
+    "created": "2023-01-03T07:13:08.793Z",
+    "modified": "2023-01-03T07:13:39.953Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  }
+]

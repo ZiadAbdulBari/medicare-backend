@@ -39,3 +39,27 @@
 .select-date{
     width: 40%;
 }
+
+input[type=file]{
+    display: none!important;
+}
+.image-input{
+    height: 76%;
+    width: 100%;
+    position: relative;
+    border: 1px solid #CED4DA;
+    border-radius: 4px;
+}
+.upload-image{
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-weight: 400;
+    font-size: 0.875rem;
+    padding:11px;
+    margin: 0;
+    cursor: pointer;
+    color: #fff;
+    background-color: #4B49AC;
+    border-radius: 4px;
+}

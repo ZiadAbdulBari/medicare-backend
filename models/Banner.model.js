@@ -6,7 +6,8 @@ const bannerContent = new mongooes.Schema({
     },
     content:{
         type:String,
-        required:false
+        required:false,
+        default:'',
     }
 })
 

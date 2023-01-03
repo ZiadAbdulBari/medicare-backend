@@ -2,6 +2,7 @@ const router = require('express').Router();
 const adminTokenCheck = require('../middleware/admin-token-check');
 const permission = require('../middleware/permission');
 const User = require('../models/User.model')
+const Banner = require('../models/Banner.model');
 const CoreService = require("../models/Service.model");
 const MedicalService = require("../models/Medical.model");
 const Appointment = require('../models/Appointment.model');
@@ -39,6 +40,58 @@ router.get('/home',adminTokenCheck, async (req,res)=>{
         totalDoctor,
         appointment,
     });
+});
+router.get('/banner',adminTokenCheck, async (req,res)=>{
+    const userData = {
+        id:req.id,
+        name:req.name,
+        email:req.email
+    }
+    const banner = await Banner.find();
+    res.render('pages/banner.ejs',{
+        title: 'Banner',
+        userData,
+        banner,
+    })
+})
+router.get('/core-service', adminTokenCheck, async (req,res)=>{
+    const userData = {
+        id:req.id,
+        name:req.name,
+        email:req.email
+    }
+    const service = await CoreService.find();
+    res.render('pages/core-service', {
+        title: 'Core Service',
+        userData,
+        service
+    });
+})
+router.get('/edit-core-service/:id', adminTokenCheck, async (req,res)=>{
+    const userData = {
+        id:req.id,
+        name:req.name,
+        email:req.email
+    }
+    const service = await CoreService.findOne({_id:req.params.id});
+    res.render('pages/edit-core-service', {
+        title: 'Edit Core Service',
+        userData,
+        service
+    });
+})
+router.get('/medical-service', adminTokenCheck, async (req,res)=>{
+    const userData = {
+        id:req.id,
+        name:req.name,
+        email:req.email
+    }
+    const service = await MedicalService.find();
+    res.render('pages/medical-service', {
+        title: 'Medical Service',
+        userData,
+        service,
+    });
 })
 router.get('/add-doctor', adminTokenCheck,async (req,res)=>{
     const userData = {
@@ -63,32 +116,6 @@ router.get('/doctor-list', adminTokenCheck, async (req,res)=>{
         title: 'Doctor List',
         userData,
         doctor,
-    });
-})
-router.get('/core-service', adminTokenCheck, async (req,res)=>{
-    const userData = {
-        id:req.id,
-        name:req.name,
-        email:req.email
-    }
-    const service = await CoreService.find();
-    res.render('pages/core-service', {
-        title: 'Core Service',
-        userData,
-        service
-    });
-})
-router.get('/medical-service', adminTokenCheck, async (req,res)=>{
-    const userData = {
-        id:req.id,
-        name:req.name,
-        email:req.email
-    }
-    const service = await MedicalService.find();
-    res.render('pages/medical-service', {
-        title: 'Medical Service',
-        userData,
-        service,
     });
 })
 router.get('/create-appointment/:id', adminTokenCheck, async (req,res)=>{

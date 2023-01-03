@@ -1,12 +1,5 @@
 [
   {
-    "_id": "4c5864bc-bb83-4a28-9ae4-9f691b125fa5",
-    "colName": "admin",
-    "created": "2022-12-19T19:07:34.407Z",
-    "sortNum": 10000,
-    "folders": []
-  },
-  {
     "_id": "ee687fbb-74db-464c-bc16-508d3fd0598e",
     "colName": "client",
     "created": "2022-12-19T19:07:47.905Z",

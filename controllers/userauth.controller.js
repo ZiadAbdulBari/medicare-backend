@@ -19,85 +19,85 @@ const userRegistration = async (req, res)=>{
     }
     const password = await bcrypt.hash(req.body.password, 10);
     let user;
-    if(req.params.user==='doctor'){
-        let available = [
-            {
-                "day":"",
-                "time":"",
-                "hospital":"",
-                "patient_cheack":"",
-            },
-            {
-                "day":"",
-                "time":"",
-                "hospital":"",
-                "patient_cheack":"",
-            },
-            {
-                "day":"",
-                "time":"",
-                "hospital":"",
-                "patient_cheack":"",
-            },
-            {
-                "day":"",
-                "time":"",
-                "hospital":"",
-                "patient_cheack":"",
-            },
-            {
-                "day":"",
-                "time":"",
-                "hospital":"",
-                "patient_cheack":"",
-            },
-            {
-                "day":"",
-                "time":"",
-                "hospital":"",
-                "patient_cheack":"",
-            },
-            {
-                "day":"",
-                "time":"",
-                "hospital":"",
-                "patient_cheack":"",
-            },
-        ];
-        user = new User({
-            name: req.body.name,
-            email: req.body.email,
-            password:password,
-            profile_img: "",
-            work_at: "",
-            speacialist_on: "",
-            degree: "",
-            NID: "",
-            available: available,
-            contact: "",
-            role:'doctor',
-            is_activeted:false,
-        })
-    }
-    if(req.params.user==='patient'){
-        user = new User({
-            name: req.body.name,
-            email: req.body.email,
-            password: password,
-            profile_img: "",
-            contact: "",
-            address: "",
-            age: "",
-            role: 'patient',
-            is_activeted: true,
-        })
-    }
+    // if(req.params.user==='doctor'){
+    //     let available = [
+    //         {
+    //             "day":"",
+    //             "time":"",
+    //             "hospital":"",
+    //             "patient_cheack":"",
+    //         },
+    //         {
+    //             "day":"",
+    //             "time":"",
+    //             "hospital":"",
+    //             "patient_cheack":"",
+    //         },
+    //         {
+    //             "day":"",
+    //             "time":"",
+    //             "hospital":"",
+    //             "patient_cheack":"",
+    //         },
+    //         {
+    //             "day":"",
+    //             "time":"",
+    //             "hospital":"",
+    //             "patient_cheack":"",
+    //         },
+    //         {
+    //             "day":"",
+    //             "time":"",
+    //             "hospital":"",
+    //             "patient_cheack":"",
+    //         },
+    //         {
+    //             "day":"",
+    //             "time":"",
+    //             "hospital":"",
+    //             "patient_cheack":"",
+    //         },
+    //         {
+    //             "day":"",
+    //             "time":"",
+    //             "hospital":"",
+    //             "patient_cheack":"",
+    //         },
+    //     ];
+    //     user = new User({
+    //         name: req.body.name,
+    //         email: req.body.email,
+    //         password:password,
+    //         profile_img: "",
+    //         work_at: "",
+    //         speacialist_on: "",
+    //         degree: "",
+    //         NID: "",
+    //         available: available,
+    //         contact: "",
+    //         role:'doctor',
+    //         is_activeted:false,
+    //     })
+    // }
+    user = new User({
+        name: req.body.name,
+        email: req.body.email,
+        password: password,
+        profile_img: "",
+        contact: "",
+        address: "",
+        age: "",
+        role: 'patient',
+        is_activeted: true,
+    })
+    // if(req.params.user==='patient'){
+    // }
     try{
         await user.save();
         return res.status(200).json({
             "status":200,
             "mgs":"successfully created",
-            "data":user
+            // "data":user
         })
     }
     catch(error){
@@ -107,6 +107,37 @@ const userRegistration = async (req, res)=>{
         })
     }
 }
+const userLogin = async (req,res)=>{
+    try{
+        const email = req.body.email;
+        const checkEmail = await User.find({email:email});
+        if(checkEmail.length>0){
+            const checkPassword = await bcrypt.compare(req.body.password, checkEmail[0].password);
+            if(checkPassword){
+                const token = jwt.sign({ id: checkEmail[0]._id, email: checkEmail[0].email, role:  checkEmail[0].role }, process.env.JWT_TOKEN);
+                res.status(200).json({
+                    "access_token": token,
+                    "mgs": "logged in",
+                })
+            }
+            else{
+                res.status(401).json({
+                    "mgs": "Failed",
+                })
+            }
+        }
+        else{
+            res.status(401).json({
+                "mgs": "Authentication failed"
+            })
+        }
+    }
+    catch{
+        res.status(500).json({
+            "mgs": "Server error"
+        })
+    }
+};
 const editUserProfile = async (req, res)=>{
     // const password = await bcrypt.hash(req.body.password, 10);
     // console.log(req.headers.origin);
@@ -312,38 +343,7 @@ const addDoctor = async (req,res)=>{
     }
     
 }
-const userLogin = async (req,res)=>{
-    try{
-        const email = req.body.email;
-        const checkEmail = await User.find({email:email});
-        if(checkEmail.length>0){
-            const checkPassword = await bcrypt.compare(req.body.password, checkEmail[0].password);
-            if(checkPassword){
-                const token = jwt.sign({ id: checkEmail[0]._id, email: checkEmail[0].email, role:  checkEmail[0].role }, process.env.JWT_TOKEN);
-                res.status(200).json({
-                    "access_token": token,
-                    "mgs": "logged in",
-                    checkEmail,
-                })
-            }
-            else{
-                res.status(401).json({
-                    "mgs": "Failed",
-                })
-            }
-        }
-        else{
-            res.status(401).json({
-                "mgs": "Authentication failed"
-            })
-        }
-    }
-    catch{
-        res.status(401).json({
-            "mgs": "Server error"
-        })
-    }
-};
+
 const userProfileData = async (req,res)=>{
     try{
         const profileData = await User.find({_id:req.id});
