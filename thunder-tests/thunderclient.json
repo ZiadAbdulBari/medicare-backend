@@ -92,5 +92,61 @@
     "headers": [],
     "params": [],
     "tests": []
+  },
+  {
+    "_id": "d692455e-7d01-4e12-bd1b-8d3f9eec987c",
+    "colId": "ee687fbb-74db-464c-bc16-508d3fd0598e",
+    "containerId": "",
+    "name": "edit profile",
+    "url": "{{url}}/user/edit-profile/",
+    "method": "POST",
+    "sortNum": 70000,
+    "created": "2023-01-04T17:31:35.863Z",
+    "modified": "2023-01-04T17:37:52.183Z",
+    "headers": [
+      {
+        "name": "Authorization",
+        "value": "{{token}}"
+      }
+    ],
+    "params": [],
+    "body": {
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "name",
+          "value": "Sakib Islam"
+        },
+        {
+          "name": "email",
+          "value": "sakib@gmail.com"
+        },
+        {
+          "name": "address",
+          "value": "Dhaka-1205"
+        },
+        {
+          "name": "contact",
+          "value": "01515216650"
+        },
+        {
+          "name": "age",
+          "value": "20"
+        },
+        {
+          "name": "profile_img",
+          "value": "",
+          "isDisabled": true
+        }
+      ],
+      "files": [
+        {
+          "name": "profile_img",
+          "value": "c:\\Users\\Ziad\\Desktop\\Capture.PNG"
+        }
+      ]
+    },
+    "tests": []
   }
 ]

@@ -95,7 +95,7 @@
     // console.log(selectedDate)
     const x = new Date(currentDate);
     const y = new Date(selectedDate);
-    let apiurl = window.location.origin+'/doctor/schedule-check/'+id;
+    let apiurl = window.location.origin+'/api/doctor/appointment/schedule-check/'+id;
     if(x<=y){
       // console.log(apiurl);
       let data = {date: selectedDate};

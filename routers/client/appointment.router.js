@@ -4,7 +4,7 @@ const {checkAvailability, createdAppointment, getAppointmentList, patientHistory
 const tokenCheck = require("../../middleware/token-checker");
 
 router.post('/schedule-check/:id',checkAvailability);
-router.post('/make-appointment',createdAppointment);
+router.post('/make-appointment', createdAppointment);
 router.get('/get-appointment-list/:id',getAppointmentList);
 router.get('/patient-history/:id',patientHistory);
 router.post('/edit-status/:id',tokenCheck,changeAppointmentStatus);

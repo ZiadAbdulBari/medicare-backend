@@ -142,14 +142,11 @@ const editUserProfile = async (req, res)=>{
     // const password = await bcrypt.hash(req.body.password, 10);
     // console.log(req.headers.origin);
     // return;
-    if(req.method !== 'POST'){
-        res.status(405).json({
-            'status':'405',
-            "mgs":"method not allowed"
-        })
-    }
+    // if(req.method !== 'POST'){
+    //     res.status(405);
+    // }
     try{
-        const userData = await User.findOne({_id:req.params.id});
+        const userData = await User.findOne({_id:req.id});
         if(userData.role === 'doctor'){
             let available = [
                 {
@@ -219,17 +216,10 @@ const editUserProfile = async (req, res)=>{
             userData.age = req.body.age;
         }
         await userData.save();
-        res.status(200).json({
-            "status":200,
-            "mgs":"successfully updated",
-            userData
-        })
+        res.status(200).json({'message':'updated'});
     }
     catch(error){
-        res.status(500).json({
-            "status":500,
-            "mgs":"server error",
-        })
+        res.status(500);
     }
 }
 const changeDoctorStatus = async (req,res)=>{
@@ -343,22 +333,16 @@ const addDoctor = async (req,res)=>{
     }
     
 }
-
 const userProfileData = async (req,res)=>{
     try{
-        const profileData = await User.find({_id:req.id});
-        if(profileData.length>0){
-            res.status(200).json({
-                "status": "200",
-                profileData
-            })
+        const profileData = await User.findOne({_id:req.id});
+        // console.log(profileData)
+        if(profileData!={}){
+            res.status(200).json({profileData})
         }
     }
-    catch{
-        res.status(404).json({
-            "status": "404",
-            "data": "No data found"
-        })
+    catch(error){
+        res.status(500);
     }
 }
 module.exports.userRegistration = userRegistration;
