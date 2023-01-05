@@ -132,16 +132,11 @@ const getAppointmentList = async(req,res)=>{
 }
 const patientHistory = async(req,res)=>{
     if(req.method=='get' ||req.method=='GET'){
-        const list = await Appointment.find({patient_id: req.params.id});
-        res.status(200).json({
-            "data":list,
-        })
+        const list = await Appointment.find({patient_id: req.id});
+        res.status(200).json({list})
     }
     else{
-        res.status(405).json({
-            "status":405,
-            "mgs":"method not allowed"
-        })
+        res.status(500);
     }
 }
 const changeAppointmentStatus = async(req,res)=>{

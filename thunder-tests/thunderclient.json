@@ -148,5 +148,24 @@
       ]
     },
     "tests": []
+  },
+  {
+    "_id": "fba6e546-2af5-4220-83e5-7fe79b234b4f",
+    "colId": "ee687fbb-74db-464c-bc16-508d3fd0598e",
+    "containerId": "",
+    "name": "patient history",
+    "url": "{{url}}/doctor/appointment/patient-history",
+    "method": "GET",
+    "sortNum": 90000,
+    "created": "2023-01-05T08:30:02.391Z",
+    "modified": "2023-01-05T08:30:43.870Z",
+    "headers": [
+      {
+        "name": "Authorization",
+        "value": "{{token}}"
+      }
+    ],
+    "params": [],
+    "tests": []
   }
 ]
