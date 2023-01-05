@@ -1,6 +1,6 @@
 const User = require("../models/User.model");
 const {doctorListValidation} = require('../helper/validation');
-
+const bcrypt = require('bcrypt');
 const getAllDoctor = async (req,res)=>{
     try{
         const allDoctor = await User.find({role:req.params.role, is_activeted:true});
@@ -110,10 +110,12 @@ const createDoctor = async (req,res)=>{
         if(req.file){
             profile_img = `${process.env.BASE_URL}${req.file.destination.slice(1)}/${req.file.filename}`;
         }
+        let password = '123';
+        let encryptedPassword = await bcrypt.hash(password, 10);
         let newDoctor = new User({
             "name": req.body.name,
             "email": req.body.email,
-            "password": "none",
+            "password": encryptedPassword,
             "profile_img": profile_img,
             "work_at": req.body.work_at,
             "speacialist_on": req.body.speacialist_on,
